@@ -1,3 +1,8 @@
+using Aplication.Interfaces;
+using Infra.Service;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http;
+
 namespace ConsumindoAPIDFe
 {
     internal static class Program
@@ -8,10 +13,30 @@ namespace ConsumindoAPIDFe
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new Login());
+
+            // Configuração do contêiner de serviços
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+
+            using (var serviceProvider = services.BuildServiceProvider())
+            {
+                // Resolve o formulário principal
+                var loginForm = serviceProvider.GetRequiredService<Login>();
+
+                Application.Run(loginForm);
+            }
+        }
+
+        private static void ConfigureServices(ServiceCollection services)
+        {
+            // Registro de dependências
+            services.AddHttpClient<IApiService, ApiService>();
+
+            // Registro dos formulários
+            services.AddTransient<Login>();
+            
         }
     }
 }
