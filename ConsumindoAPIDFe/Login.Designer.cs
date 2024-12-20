@@ -74,7 +74,7 @@
             txtUsuario.BackColor = SystemColors.ButtonHighlight;
             txtUsuario.Location = new Point(51, 101);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.PlaceholderText = "Usuário";
+            txtUsuario.PlaceholderText = "Email";
             txtUsuario.Size = new Size(291, 27);
             txtUsuario.TabIndex = 0;
             txtUsuario.Tag = "";
