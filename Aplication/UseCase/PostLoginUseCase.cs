@@ -13,10 +13,18 @@ namespace Aplication.UseCase
             _apiService = apiService;
         }
 
-        public async Task Execute()
+        public async Task<Usuario?> Execute(string email, string senha)
         {
-            var data = await _apiService.GetDataAsync("https://back-dfe.4lions.com.br/dfe/v1/public/PostLogin");
-            var usuarios = JsonSerializer.Deserialize<List<Usuario>>(data);
+            var requestData = new
+            {
+                email,
+                senha
+            };
+
+            var json = JsonSerializer.Serialize(requestData);
+            var response = await _apiService.PostDataAsync("https://back-dfe.4lions.com.br/dfe/v1/public/PostLogin", json);
+            
+            return JsonSerializer.Deserialize<Usuario>(response);
         }
     }
 }

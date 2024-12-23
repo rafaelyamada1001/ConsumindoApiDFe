@@ -63,11 +63,13 @@
             // 
             // txtSenha
             // 
+            txtSenha.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             txtSenha.Location = new Point(51, 149);
             txtSenha.Name = "txtSenha";
             txtSenha.PlaceholderText = "Senha";
             txtSenha.Size = new Size(291, 27);
             txtSenha.TabIndex = 1;
+            txtSenha.UseSystemPasswordChar = true;
             // 
             // txtUsuario
             // 
@@ -78,6 +80,7 @@
             txtUsuario.Size = new Size(291, 27);
             txtUsuario.TabIndex = 0;
             txtUsuario.Tag = "";
+            txtUsuario.TextChanged += txtUsuario_TextChanged;
             // 
             // Login
             // 
