@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Aplication.UseCase;
 
 namespace ConsumindoAPIDFe
 {
     public partial class GerenciadorDeOpcoes : Form
     {
-        public GerenciadorDeOpcoes()
+        private readonly GetNfeUseCase _getNfeUseCase;
+        public GerenciadorDeOpcoes(GetNfeUseCase getNfeUseCase)
         {
+            _getNfeUseCase = getNfeUseCase;
+
             InitializeComponent();
+        }
+        private void btnDetalhesNFe_Click(object sender, EventArgs e)
+        {
+            var useCase = _getNfeUseCase.Execute;
         }
     }
 }

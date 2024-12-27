@@ -30,10 +30,10 @@
         {
             dataGridView1 = new DataGridView();
             grpOpcoes = new GroupBox();
-            btnListarNFe = new Button();
-            btnDetalhesNFe = new Button();
-            btnPdfNFe = new Button();
             btnEventosNFe = new Button();
+            btnPdfNFe = new Button();
+            btnDetalhesNFe = new Button();
+            btnListarNFe = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             grpOpcoes.SuspendLayout();
             SuspendLayout();
@@ -60,25 +60,15 @@
             grpOpcoes.TabStop = false;
             grpOpcoes.Text = "Opções";
             // 
-            // btnListarNFe
+            // btnEventosNFe
             // 
-            btnListarNFe.BackColor = SystemColors.ButtonHighlight;
-            btnListarNFe.Location = new Point(182, 43);
-            btnListarNFe.Name = "btnListarNFe";
-            btnListarNFe.Size = new Size(128, 33);
-            btnListarNFe.TabIndex = 0;
-            btnListarNFe.Text = "Listar NF-e";
-            btnListarNFe.UseVisualStyleBackColor = false;
-            // 
-            // btnDetalhesNFe
-            // 
-            btnDetalhesNFe.BackColor = SystemColors.ControlLightLight;
-            btnDetalhesNFe.Location = new Point(328, 43);
-            btnDetalhesNFe.Name = "btnDetalhesNFe";
-            btnDetalhesNFe.Size = new Size(128, 33);
-            btnDetalhesNFe.TabIndex = 1;
-            btnDetalhesNFe.Text = "Detalhes NF-e";
-            btnDetalhesNFe.UseVisualStyleBackColor = false;
+            btnEventosNFe.BackColor = SystemColors.ControlLightLight;
+            btnEventosNFe.Location = new Point(619, 43);
+            btnEventosNFe.Name = "btnEventosNFe";
+            btnEventosNFe.Size = new Size(128, 33);
+            btnEventosNFe.TabIndex = 3;
+            btnEventosNFe.Text = "Eventos NF-e";
+            btnEventosNFe.UseVisualStyleBackColor = false;
             // 
             // btnPdfNFe
             // 
@@ -90,15 +80,26 @@
             btnPdfNFe.Text = "PDF NF-e";
             btnPdfNFe.UseVisualStyleBackColor = false;
             // 
-            // btnEventosNFe
+            // btnDetalhesNFe
             // 
-            btnEventosNFe.BackColor = SystemColors.ControlLightLight;
-            btnEventosNFe.Location = new Point(619, 43);
-            btnEventosNFe.Name = "btnEventosNFe";
-            btnEventosNFe.Size = new Size(128, 33);
-            btnEventosNFe.TabIndex = 3;
-            btnEventosNFe.Text = "Eventos NF-e";
-            btnEventosNFe.UseVisualStyleBackColor = false;
+            btnDetalhesNFe.BackColor = SystemColors.ControlLightLight;
+            btnDetalhesNFe.Location = new Point(328, 43);
+            btnDetalhesNFe.Name = "btnDetalhesNFe";
+            btnDetalhesNFe.Size = new Size(128, 33);
+            btnDetalhesNFe.TabIndex = 1;
+            btnDetalhesNFe.Text = "Detalhes NF-e";
+            btnDetalhesNFe.UseVisualStyleBackColor = false;
+            btnDetalhesNFe.Click += btnDetalhesNFe_Click;
+            // 
+            // btnListarNFe
+            // 
+            btnListarNFe.BackColor = SystemColors.ButtonHighlight;
+            btnListarNFe.Location = new Point(182, 43);
+            btnListarNFe.Name = "btnListarNFe";
+            btnListarNFe.Size = new Size(128, 33);
+            btnListarNFe.TabIndex = 0;
+            btnListarNFe.Text = "Listar NF-e";
+            btnListarNFe.UseVisualStyleBackColor = false;
             // 
             // GerenciadorDeOpcoes
             // 

@@ -1,4 +1,5 @@
 using Aplication.Interfaces;
+using Aplication.UseCase;
 using Infra.Service;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http;
@@ -34,9 +35,11 @@ namespace ConsumindoAPIDFe
             // Registro de dependências
             services.AddHttpClient<IApiService, ApiService>();
 
+            // Registro do caso de uso
+            services.AddTransient<PostLoginUseCase>();
+
             // Registro dos formulários
             services.AddTransient<Login>();
-            
         }
     }
 }
