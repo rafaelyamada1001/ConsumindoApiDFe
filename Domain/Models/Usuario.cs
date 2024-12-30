@@ -4,6 +4,12 @@ namespace Domain.Models
 {
     public class Usuario
     {
+        public Usuario(string token, string email)
+        {
+            Token = token;
+            Email = email;
+        }
+
         [JsonPropertyName("autorizado")]
         public bool Autorizado { get; private set; }
 
@@ -21,7 +27,9 @@ namespace Domain.Models
 
         [JsonPropertyName("status")]
         public string Status { get; private set; }
+        public string Email { get;  set; }
 
-        public string Email { get; private set; }
+        [JsonPropertyName("empresa")]
+        public List<Empresa> Empresas { get; set; } // Lista de empresas associadas ao usuário
     }
 }

@@ -30,6 +30,8 @@
         {
             dataGridView1 = new DataGridView();
             grpOpcoes = new GroupBox();
+            lblEmpresa = new Label();
+            cmbEmpresa = new ComboBox();
             btnEventosNFe = new Button();
             btnPdfNFe = new Button();
             btnDetalhesNFe = new Button();
@@ -49,6 +51,8 @@
             // 
             // grpOpcoes
             // 
+            grpOpcoes.Controls.Add(lblEmpresa);
+            grpOpcoes.Controls.Add(cmbEmpresa);
             grpOpcoes.Controls.Add(btnEventosNFe);
             grpOpcoes.Controls.Add(btnPdfNFe);
             grpOpcoes.Controls.Add(btnDetalhesNFe);
@@ -60,10 +64,28 @@
             grpOpcoes.TabStop = false;
             grpOpcoes.Text = "Opções";
             // 
+            // lblEmpresa
+            // 
+            lblEmpresa.AutoSize = true;
+            lblEmpresa.Location = new Point(168, 10);
+            lblEmpresa.Name = "lblEmpresa";
+            lblEmpresa.Size = new Size(55, 15);
+            lblEmpresa.TabIndex = 5;
+            lblEmpresa.Text = "Empresa:";
+            // 
+            // cmbEmpresa
+            // 
+            cmbEmpresa.FormattingEnabled = true;
+            cmbEmpresa.Location = new Point(168, 28);
+            cmbEmpresa.Name = "cmbEmpresa";
+            cmbEmpresa.Size = new Size(475, 23);
+            cmbEmpresa.TabIndex = 4;
+            cmbEmpresa.SelectedIndexChanged += cmbEmpresa_SelectedIndexChanged;
+            // 
             // btnEventosNFe
             // 
             btnEventosNFe.BackColor = SystemColors.ControlLightLight;
-            btnEventosNFe.Location = new Point(619, 43);
+            btnEventosNFe.Location = new Point(6, 100);
             btnEventosNFe.Name = "btnEventosNFe";
             btnEventosNFe.Size = new Size(128, 33);
             btnEventosNFe.TabIndex = 3;
@@ -73,7 +95,7 @@
             // btnPdfNFe
             // 
             btnPdfNFe.BackColor = SystemColors.ControlLightLight;
-            btnPdfNFe.Location = new Point(472, 43);
+            btnPdfNFe.Location = new Point(6, 61);
             btnPdfNFe.Name = "btnPdfNFe";
             btnPdfNFe.Size = new Size(128, 33);
             btnPdfNFe.TabIndex = 2;
@@ -83,7 +105,7 @@
             // btnDetalhesNFe
             // 
             btnDetalhesNFe.BackColor = SystemColors.ControlLightLight;
-            btnDetalhesNFe.Location = new Point(328, 43);
+            btnDetalhesNFe.Location = new Point(6, 22);
             btnDetalhesNFe.Name = "btnDetalhesNFe";
             btnDetalhesNFe.Size = new Size(128, 33);
             btnDetalhesNFe.TabIndex = 1;
@@ -94,12 +116,13 @@
             // btnListarNFe
             // 
             btnListarNFe.BackColor = SystemColors.ButtonHighlight;
-            btnListarNFe.Location = new Point(182, 43);
+            btnListarNFe.Location = new Point(820, 139);
             btnListarNFe.Name = "btnListarNFe";
             btnListarNFe.Size = new Size(128, 33);
             btnListarNFe.TabIndex = 0;
             btnListarNFe.Text = "Listar NF-e";
             btnListarNFe.UseVisualStyleBackColor = false;
+            btnListarNFe.Click += btnListarNFe_Click;
             // 
             // GerenciadorDeOpcoes
             // 
@@ -114,6 +137,7 @@
             Text = "GerenciadorDeOpcoes";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             grpOpcoes.ResumeLayout(false);
+            grpOpcoes.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -125,5 +149,7 @@
         private Button btnEventosNFe;
         private Button btnPdfNFe;
         private Button btnDetalhesNFe;
+        private Label lblEmpresa;
+        private ComboBox cmbEmpresa;
     }
 }

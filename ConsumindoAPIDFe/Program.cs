@@ -32,14 +32,16 @@ namespace ConsumindoAPIDFe
 
         private static void ConfigureServices(ServiceCollection services)
         {
-            // Registro de dependências
+            // Registro de serviços HTTP
             services.AddHttpClient<IApiService, ApiService>();
 
-            // Registro do caso de uso
+            // Registro dos casos de uso
             services.AddTransient<PostLoginUseCase>();
+            services.AddTransient<GetListaNfeUseCase>();
 
             // Registro dos formulários
             services.AddTransient<Login>();
+            services.AddTransient<GerenciadorDeOpcoes>();
         }
     }
 }
