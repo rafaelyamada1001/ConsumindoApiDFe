@@ -152,7 +152,6 @@
             // 
             // cmbTipo
             // 
-            cmbTipo.AutoCompleteCustomSource.AddRange(new string[] { "Todos" });
             cmbTipo.FormattingEnabled = true;
             cmbTipo.Items.AddRange(new object[] { "Todos ", "Entradas ", "Saidas" });
             cmbTipo.Location = new Point(341, 139);
