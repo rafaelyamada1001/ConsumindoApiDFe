@@ -6,15 +6,22 @@ namespace ConsumindoAPIDFe
     public partial class GerenciadorDeOpcoes : Form
     {
         private readonly GetListaNfeUseCase _getListaNfeUseCase;
+        private readonly GetEventosNfeUseCase _getEventosNfeUseCase;
+        private readonly GetNfeUseCase _getNfeUseCase;
+        private readonly GetNfeByChaveUseCase _getNfeByChaveUseCase;
 
         public Usuario Usuario { get; set; } // Propriedade para armazenar o usuário autenticado
 
-        public GerenciadorDeOpcoes(GetListaNfeUseCase getNfeUseCase)
+
+        public GerenciadorDeOpcoes(GetListaNfeUseCase getListaNfeUseCase, GetEventosNfeUseCase getEventosNfeUseCase, GetNfeUseCase getNfeUseCase, GetNfeByChaveUseCase getNfeByChaveUseCase)
         {
-            _getListaNfeUseCase = getNfeUseCase;
+            _getListaNfeUseCase = getListaNfeUseCase;
+            _getEventosNfeUseCase = getEventosNfeUseCase;
+            _getNfeUseCase = getNfeUseCase;
+            _getNfeByChaveUseCase = getNfeByChaveUseCase;
             InitializeComponent();
 
-            this.Load += new System.EventHandler(this.GerenciadorDeOpcoes_Load);
+            Load += new EventHandler(GerenciadorDeOpcoes_Load);
         }
         private void GerenciadorDeOpcoes_Load(object sender, EventArgs e)
         {
@@ -27,9 +34,8 @@ namespace ConsumindoAPIDFe
                 foreach (var empresa in Usuario.Empresas)
                 {
                     cmbEmpresa.Items.Add(empresa.Nome); // Adiciona o nome da empresa
-                }                
+                }
 
-                // Seleciona o primeiro item (opcional)
                 cmbEmpresa.SelectedIndex = 0;
             }
             else
@@ -37,38 +43,51 @@ namespace ConsumindoAPIDFe
                 MessageBox.Show("Nenhuma empresa associada ao usuário.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private void btnDetalhesNFe_Click(object sender, EventArgs e)
+        private async void btnDetalhesNFe_Click(object sender, EventArgs e)
         {
-
+            var chave = txtChaveNfe.Text;
+            var detalheNfe = await _getNfeUseCase.Execute(Usuario);
         }
 
         private async void btnListarNFe_Click(object sender, EventArgs e)
         {
+            var chave = txtChaveNfe.Text;
+            var dataInicial = dtpDataInicial.Text;
+            var dataFinal = dtpDataFinal.Text;
+            var modelo = txtModelo.Text;
+            var tipo = cmbTipo.Text;
+            var emissao = cmbEmissao.Text;
+            var numero = txtNumero.Text;
+            var cnpjcpf = txtCnpjCpf.Text;
+            var razaoSocial = txtRazaoSocial.Text;
+
             try
             {
-                // Executa o caso de uso assíncrono
                 var detalhes = await _getListaNfeUseCase.Execute(Usuario);
 
-                // Mostra uma mensagem de sucesso
                 MessageBox.Show("Detalhes da NF-e obtidos com sucesso!");
-
-                // Aqui você pode exibir os detalhes ou processá-los conforme necessário
             }
             catch (Exception ex)
             {
-                // Mostra uma mensagem de erro
                 MessageBox.Show($"Erro ao obter detalhes da NF-e: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void cmbEmpresa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Lógica quando o usuário selecionar uma empresa
-            //if (cmbEmpresa.SelectedItem != null)
-            //{
-            //    string empresaSelecionada = cmbEmpresa.SelectedItem.ToString();
-            //    MessageBox.Show($"Empresa selecionada: {empresaSelecionada}");
-            //}
+
+        }
+
+        private async void btnEventosNFe_Click(object sender, EventArgs e)
+        {
+            var chave = txtChaveNfe.Text;
+            var eventos = await _getEventosNfeUseCase.Execute(Usuario);
+        }
+
+        private async void btnPdfNFe_Click(object sender, EventArgs e)
+        {
+            var chave = txtChaveNfe.Text;
+            var pdfNfe =  await _getNfeByChaveUseCase.Execute(Usuario);
         }
     }
 }

@@ -2,7 +2,6 @@ using Aplication.Interfaces;
 using Aplication.UseCase;
 using Infra.Service;
 using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http;
 
 namespace ConsumindoAPIDFe
 {
@@ -38,6 +37,9 @@ namespace ConsumindoAPIDFe
             // Registro dos casos de uso
             services.AddTransient<PostLoginUseCase>();
             services.AddTransient<GetListaNfeUseCase>();
+            services.AddTransient<GetEventosNfeUseCase>();
+            services.AddTransient<GetNfeUseCase>();
+            services.AddTransient<GetNfeByChaveUseCase>();
 
             // Registro dos formulários
             services.AddTransient<Login>();

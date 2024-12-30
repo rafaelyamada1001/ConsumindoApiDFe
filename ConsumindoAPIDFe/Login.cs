@@ -18,8 +18,8 @@ namespace ConsumindoAPIDFe
 
         private async void btnEntrar_Click(object sender, EventArgs e)
         {
-            string email = txtUsuario.Text;
-            string senha = txtSenha.Text;
+            var email = txtUsuario.Text;
+            var senha = txtSenha.Text;
 
             try
             {
