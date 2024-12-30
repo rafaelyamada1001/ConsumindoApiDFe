@@ -30,7 +30,7 @@ namespace Aplication.UseCase
 
             if (usuario != null)
             {
-                usuario.Email = email;  // Atribui o email manualmente ao Usuario
+                usuario.Email = email;
             }
 
             return usuario;

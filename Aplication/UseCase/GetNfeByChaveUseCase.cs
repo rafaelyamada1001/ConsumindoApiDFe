@@ -13,11 +13,11 @@ namespace Aplication.UseCase
             _apiService = apiService;
         }
 
-        public async Task<PdfNfe> Execute(Usuario usuario)
+        public async Task<PdfNfe> Execute(Usuario usuario, Parametros parametros)
         {
             var endpoint = "https://back-dfe.4lions.tec.br/dfe/v1/public/GetNFeByChave/:idEmpresa/:chNFe";
 
-            var data = await _apiService.GetDataAsync(endpoint, usuario);
+            var data = await _apiService.GetDataAsync(endpoint, usuario, parametros);
             return JsonSerializer.Deserialize<PdfNfe>(data);
         }
     }

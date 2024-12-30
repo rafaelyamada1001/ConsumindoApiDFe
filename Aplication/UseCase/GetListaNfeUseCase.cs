@@ -1,6 +1,5 @@
 ﻿using Aplication.Interfaces;
 using Domain.Models;
-using System.Net.Mail;
 using System.Text.Json;
 
 namespace Aplication.UseCase
@@ -14,11 +13,11 @@ namespace Aplication.UseCase
             _apiService = apiService;
         }
 
-        public async Task<ListaNfe?> Execute(Usuario usuario)
+        public async Task<ListaNfe?> Execute(Usuario usuario, Parametros parametros)
         {
             var endpoint = "https://back-dfe.4lions.com.br/dfe/v1/public/GetListaNFe";
 
-            var data = await _apiService.GetDataAsync(endpoint, usuario);
+            var data = await _apiService.GetDataAsync(endpoint, usuario, parametros);
             return JsonSerializer.Deserialize<ListaNfe>(data);
         }
     }
