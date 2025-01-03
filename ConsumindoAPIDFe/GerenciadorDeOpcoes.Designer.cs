@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            dgvNfe = new DataGridView();
             grpOpcoes = new GroupBox();
             lblRazaoSocial = new Label();
             txtRazaoSocial = new TextBox();
@@ -54,18 +54,18 @@
             btnPdfNFe = new Button();
             btnDetalhesNFe = new Button();
             btnListarNFe = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvNfe).BeginInit();
             grpOpcoes.SuspendLayout();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvNfe
             // 
-            dataGridView1.BackgroundColor = SystemColors.ControlLightLight;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 192);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(956, 317);
-            dataGridView1.TabIndex = 0;
+            dgvNfe.BackgroundColor = SystemColors.ControlLightLight;
+            dgvNfe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvNfe.Location = new Point(12, 192);
+            dgvNfe.Name = "dgvNfe";
+            dgvNfe.Size = new Size(956, 317);
+            dgvNfe.TabIndex = 0;
             // 
             // grpOpcoes
             // 
@@ -317,11 +317,11 @@
             BackColor = SystemColors.Highlight;
             ClientSize = new Size(980, 521);
             Controls.Add(grpOpcoes);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvNfe);
             Name = "GerenciadorDeOpcoes";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "GerenciadorDeOpcoes";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvNfe).EndInit();
             grpOpcoes.ResumeLayout(false);
             grpOpcoes.PerformLayout();
             ResumeLayout(false);
@@ -329,7 +329,7 @@
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgvNfe;
         private GroupBox grpOpcoes;
         private Button btnListarNFe;
         private Button btnEventosNFe;

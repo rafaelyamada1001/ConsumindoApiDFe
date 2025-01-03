@@ -38,6 +38,8 @@ namespace ConsumindoAPIDFe
                 cmbEmpresa.ValueMember = "Id";    // Propriedade usada como valor associado
 
                 cmbEmpresa.SelectedIndex = 0;
+                cmbTipo.SelectedIndex = 0;
+                cmbEmissao.SelectedIndex = 0;
             }
             else
             {
@@ -52,28 +54,18 @@ namespace ConsumindoAPIDFe
 
         private async void btnListarNFe_Click(object sender, EventArgs e)
         {
-            var chave = string.IsNullOrWhiteSpace(txtChaveNfe.Text) ? null : txtChaveNfe.Text;
-            var dataInicial = string.IsNullOrWhiteSpace(dtpDataInicial.Text) ? null : dtpDataInicial.Text;
-            var dataFinal = string.IsNullOrWhiteSpace(dtpDataFinal.Text) ? null : dtpDataFinal.Text;
-            var modelo = string.IsNullOrWhiteSpace(txtModelo.Text) ? null : txtModelo.Text;
-            var tipo = string.IsNullOrWhiteSpace(cmbTipo.Text) ? null : cmbTipo.Text;
-            var emissao = string.IsNullOrWhiteSpace(cmbEmissao.Text) ? null : cmbEmissao.Text;
-            var numero = string.IsNullOrWhiteSpace(txtNumero.Text) ? null : txtNumero.Text;
-            var cnpjcpf = string.IsNullOrWhiteSpace(txtCnpjCpf.Text) ? null : txtCnpjCpf.Text;
-            var razaoSocial = string.IsNullOrWhiteSpace(txtRazaoSocial.Text) ? null : txtRazaoSocial.Text;
-
-            // Cria uma instância de ListaNfeParams com os valores coletados
             var parametros = new Parametros
             {
-                Chave = chave,
-                DataInicial = dataInicial,
-                DataFinal = dataFinal,
-                Modelo = modelo,
-                Tipo = tipo,
-                Emissao = emissao,
-                Numero = numero,
-                CnpjCpf = cnpjcpf,
-                RazaoSocial = razaoSocial,              
+                Empresa = cmbEmpresa.SelectedValue?.ToString(),
+                Chave = txtChaveNfe.Text.Trim(),
+                DataInicial = dtpDataInicial.Value.ToString("yyyy-MM-dd"), // Ajusta para o formato esperado pela API
+                DataFinal = dtpDataFinal.Value.ToString("yyyy-MM-dd"),   // Ajusta para o formato esperado pela API
+                Modelo = txtModelo.Text.Trim(),
+                Tipo = cmbTipo.Text.Trim(),
+                Emissao = cmbEmissao.Text.Trim(),
+                Numero = txtNumero.Text.Trim(),
+                CnpjCpf = txtCnpjCpf.Text.Trim(),
+                RazaoSocial = txtRazaoSocial.Text.Trim(),
             };
 
             try
@@ -82,12 +74,9 @@ namespace ConsumindoAPIDFe
 
                 if (detalhes != null)
                 {
-                    // Aqui você pode processar os detalhes conforme necessário
                     MessageBox.Show("Detalhes da NF-e obtidos com sucesso!");
 
-                    // Exemplo: preencher um DataGridView
-                    // dataGridViewNfe.DataSource = detalhes.Lista; // Supondo que 'detalhes' tenha uma propriedade 'Lista'
-
+                    dgvNfe.DataSource = Usuario.Empresas;
                 }
                 else
                 {
