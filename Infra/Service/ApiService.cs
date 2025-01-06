@@ -22,10 +22,10 @@ namespace Infra.Service
             var query = new List<string>();
 
             if (!string.IsNullOrEmpty(parametros.Empresa))
-                query.Add($"idEmpresa={Uri.EscapeDataString(parametros.Empresa)}");
+                query.Add($"empresa={Uri.EscapeDataString(parametros.Empresa)}");
 
             if (!string.IsNullOrEmpty(parametros.Chave))
-                query.Add($"chNFe={Uri.EscapeDataString(parametros.Chave)}");
+                query.Add($"chave={Uri.EscapeDataString(parametros.Chave)}");
 
             if (!string.IsNullOrEmpty(parametros.DataInicial))
                 query.Add($"dataInicial={Uri.EscapeDataString(parametros.DataInicial)}");
