@@ -34,8 +34,8 @@ namespace ConsumindoAPIDFe
                 cmbEmpresa.DataSource = Usuario.Empresas;
 
                 // Define qual propriedade será exibida e qual será o valor associado
-                cmbEmpresa.DisplayMember = "Nome"; // Propriedade que será exibida no ComboBox
-                cmbEmpresa.ValueMember = "Id";    // Propriedade usada como valor associado
+                cmbEmpresa.DisplayMember = "Nome";
+                cmbEmpresa.ValueMember = "Id";    
 
                 cmbEmpresa.SelectedIndex = 0;
                 cmbTipo.SelectedIndex = 0;
@@ -57,15 +57,15 @@ namespace ConsumindoAPIDFe
             var parametros = new Parametros
             {
                 Empresa = cmbEmpresa.SelectedValue?.ToString(),
+                Tipo = cmbTipo.SelectedValue?.ToString(),
+                Emissao = cmbEmissao.SelectedValue?.ToString(),
+                DataInicial = dtpDataInicial.Value.ToString("yyyy-MM-dd"),
+                DataFinal = dtpDataFinal.Value.ToString("yyyy-MM-dd"),
                 Chave = txtChaveNfe.Text.Trim(),
-                DataInicial = dtpDataInicial.Value.ToString("yyyy-MM-dd"), // Ajusta para o formato esperado pela API
-                DataFinal = dtpDataFinal.Value.ToString("yyyy-MM-dd"),   // Ajusta para o formato esperado pela API
                 Modelo = txtModelo.Text.Trim(),
-                Tipo = cmbTipo.Text.Trim(),
-                Emissao = cmbEmissao.Text.Trim(),
                 Numero = txtNumero.Text.Trim(),
                 CnpjCpf = txtCnpjCpf.Text.Trim(),
-                RazaoSocial = txtRazaoSocial.Text.Trim(),
+                RazaoSocial = txtRazaoSocial.Text.Trim()
             };
 
             try
@@ -76,7 +76,7 @@ namespace ConsumindoAPIDFe
                 {
                     MessageBox.Show("Detalhes da NF-e obtidos com sucesso!");
 
-                    dgvNfe.DataSource = Usuario.Empresas;
+                    ;
                 }
                 else
                 {
@@ -122,9 +122,6 @@ namespace ConsumindoAPIDFe
 
                 MessageBox.Show("PDF da NF-e obtido com sucesso!");
 
-                // Aqui você pode salvar ou exibir o PDF
-                // Exemplo para salvar o PDF em disco:
-                // File.WriteAllBytes("Caminho_Arquivo.pdf", pdfNfe.Conteudo);
             }
             catch (Exception ex)
             {

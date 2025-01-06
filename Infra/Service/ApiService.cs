@@ -51,7 +51,10 @@ namespace Infra.Service
             if (!string.IsNullOrEmpty(parametros.RazaoSocial))
                 query.Add($"razaoSocial={Uri.EscapeDataString(parametros.RazaoSocial)}");
 
+            query.Add("page=1");
+
             uriBuilder.Query = string.Join("&", query);
+
 
             var request = new HttpRequestMessage(HttpMethod.Get, uriBuilder.Uri);
 
@@ -59,11 +62,19 @@ namespace Infra.Service
             request.Headers.Add("email", usuario.Email);
             request.Headers.Add("senha", usuario.Token);
 
-            // Envia a requisição
-            var response = await _httpClient.SendAsync(request);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                // Envia a requisição e valida o resultado
+                var response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsStringAsync();
+                // Retorna o conteúdo da resposta
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Erro ao acessar a API: {ex.Message}", ex);
+            }
         }
         public async Task<string> PostDataAsync(string endpoint, string jsonContent)
         {
