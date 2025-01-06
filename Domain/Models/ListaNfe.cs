@@ -33,7 +33,7 @@ namespace Domain.Models
 
         //CNPJ/CPF do emitente da nota fiscal
         [JsonPropertyName("listaNFe.cnpjcpf")]
-        public int Documento { get; private set; }
+        public string Documento { get; private set; }
 
         [JsonPropertyName("listaNFe.razaoSocial")]
         public string RazaoSocial { get; private set; }

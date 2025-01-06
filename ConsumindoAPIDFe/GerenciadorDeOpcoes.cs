@@ -10,8 +10,7 @@ namespace ConsumindoAPIDFe
         private readonly GetNfeUseCase _getNfeUseCase;
         private readonly GetNfeByChaveUseCase _getNfeByChaveUseCase;
 
-        public Usuario Usuario { get; set; } // Propriedade para armazenar o usuário autenticado
-        public Parametros Paramentros { get; set; }
+        public Usuario Usuario { get; set; } // Propriedade para armazenar o usuário autenticado       
 
 
         public GerenciadorDeOpcoes(GetListaNfeUseCase getListaNfeUseCase, GetEventosNfeUseCase getEventosNfeUseCase, GetNfeUseCase getNfeUseCase, GetNfeByChaveUseCase getNfeByChaveUseCase)
@@ -28,7 +27,7 @@ namespace ConsumindoAPIDFe
         {
             if (Usuario?.Empresas != null && Usuario.Empresas.Any())
             {
-                cmbEmpresa.DataSource = null; 
+                cmbEmpresa.DataSource = null;
 
                 // Define a lista de empresas como fonte de dados
                 cmbEmpresa.DataSource = Usuario.Empresas;
@@ -48,9 +47,38 @@ namespace ConsumindoAPIDFe
         }
         private async void btnDetalhesNFe_Click(object sender, EventArgs e)
         {
-            var chave = txtChaveNfe.Text;
-            var detalheNfe = await _getNfeUseCase.Execute(Usuario, Paramentros);
-        }
+
+            try
+            {
+                // Cria e inicializa o objeto Parametros
+                var parametros = new Parametros
+                {
+                    Chave = txtChaveNfe.Text,
+                    //Empresa = null
+                };
+
+                // Chama o método que consome a API, passando os parâmetros corretamente
+                var detalheNfe = await _getNfeUseCase.Execute(Usuario, parametros);
+                if (detalheNfe != null)
+                {
+
+                    dgvNfe.DataSource = null;
+                    dgvNfe.DataSource = detalheNfe;
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                // Aqui você pode processar o resultado retornado
+                MessageBox.Show("Detalhes da NFe obtidos com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                // Trata erros
+                MessageBox.Show($"Erro ao obter os detalhes da NFe: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
+    }
 
         private async void btnListarNFe_Click(object sender, EventArgs e)
         {
@@ -76,7 +104,7 @@ namespace ConsumindoAPIDFe
                 {
                     MessageBox.Show("Detalhes da NF-e obtidos com sucesso!");
 
-                    ;
+                    dgvNfe.DataSource = detalhes;
                 }
                 else
                 {
@@ -96,8 +124,35 @@ namespace ConsumindoAPIDFe
 
         private async void btnEventosNFe_Click(object sender, EventArgs e)
         {
-            var chave = txtChaveNfe.Text;
-            var eventos = await _getEventosNfeUseCase.Execute(Usuario, Paramentros);
+            try
+            {
+                // Cria e inicializa o objeto Parametros
+                var parametros = new Parametros
+                {
+                    Chave = txtChaveNfe.Text, // Passa o valor da chave da nota fiscal
+                    Empresa = cmbEmpresa.SelectedValue?.ToString()
+                };
+
+                // Chama o método que consome a API, passando os parâmetros corretamente
+                var eventosNfe = await _getNfeUseCase.Execute(Usuario, parametros);
+                if (eventosNfe != null)
+                {
+
+                    dgvNfe.DataSource = null;
+                    dgvNfe.DataSource = eventosNfe;
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                // Aqui você pode processar o resultado retornado
+                MessageBox.Show("Eventos da NFe obtidos com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                // Trata erros
+                MessageBox.Show($"Erro ao obter os detalhes da NFe: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private async void btnPdfNFe_Click(object sender, EventArgs e)
@@ -122,11 +177,40 @@ namespace ConsumindoAPIDFe
 
                 MessageBox.Show("PDF da NF-e obtido com sucesso!");
 
+                // Aqui você pode salvar ou exibir o PDF
+                // Exemplo para salvar o PDF em disco:
+                // File.WriteAllBytes("Caminho_Arquivo.pdf", pdfNfe.Conteudo);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao obter o PDF da NF-e: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbTipo.Items.Clear();
+            cmbTipo.Items.Add(new KeyValuePair<string, string>("Todas", "T"));
+            cmbTipo.Items.Add(new KeyValuePair<string, string>("Entradas", "E"));
+            cmbTipo.Items.Add(new KeyValuePair<string, string>("Saídas", "S"));
+            cmbTipo.DisplayMember = "Key";
+            cmbTipo.ValueMember = "Value";
+
+        }
+
+        private void cmbEmissao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbEmissao.Items.Clear();
+            cmbEmissao.Items.Add(new KeyValuePair<string, string>("Própria", "P"));
+            cmbEmissao.Items.Add(new KeyValuePair<string, string>("Terceiro", "T"));
+            cmbEmissao.DisplayMember = "Key";
+            cmbEmissao.ValueMember = "Value";
+
+        }
+
+        private void dgvNfe_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

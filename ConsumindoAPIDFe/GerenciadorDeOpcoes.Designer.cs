@@ -66,6 +66,7 @@
             dgvNfe.Name = "dgvNfe";
             dgvNfe.Size = new Size(956, 317);
             dgvNfe.TabIndex = 0;
+            dgvNfe.CellContentClick += dgvNfe_CellContentClick;
             // 
             // grpOpcoes
             // 
@@ -149,6 +150,7 @@
             cmbEmissao.Name = "cmbEmissao";
             cmbEmissao.Size = new Size(151, 23);
             cmbEmissao.TabIndex = 18;
+            cmbEmissao.SelectedIndexChanged += cmbEmissao_SelectedIndexChanged;
             // 
             // cmbTipo
             // 
@@ -158,6 +160,7 @@
             cmbTipo.Name = "cmbTipo";
             cmbTipo.Size = new Size(151, 23);
             cmbTipo.TabIndex = 17;
+            cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
             // 
             // lblTipo
             // 
