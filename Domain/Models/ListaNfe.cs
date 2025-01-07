@@ -4,81 +4,123 @@ namespace Domain.Models
 {
     public class ListaNfe
     {
-        [JsonPropertyName("ret.sucesso")]
-        public bool Retorno { get; private set; }
+        [JsonPropertyName("ret")]
+        public Retorno Retorno { get; private set; }
 
-        [JsonPropertyName("ret.msg")]
-        public string Menssagem { get; private set; }
+        [JsonPropertyName("resumo")]
+        public Resumo Resumo { get; private set; }
 
-        [JsonPropertyName("listaNFe.idEmpresa")]
-        public int IdEmpresa { get; private set; }
+        [JsonPropertyName("listaNFe")]
+        public List<NotaFiscal> Notas { get; private set; }
+    }
 
-        [JsonPropertyName("listaNFe.id")]
-        public int IdNfe { get; private set; }
+    public class Retorno
+    {
+        [JsonPropertyName("sucesso")]
+        public bool Sucesso { get; private set; }
 
-        [JsonPropertyName("listaNFe.chave")]
-        public int Chave { get; private set; }
+        [JsonPropertyName("msg")]
+        public string Mensagem { get; private set; }
 
-        [JsonPropertyName("listaNFe.natOp")]
-        public int NaturezaOperacao { get; private set; }
+        [JsonPropertyName("id")]
+        public string Id { get; private set; }
+    }
 
-        [JsonPropertyName("listaNFe.numero")]
-        public int Numero { get; private set; }
-
-        [JsonPropertyName("listaNFe.serie")]
-        public int Serie { get; private set; }
-
-        [JsonPropertyName("listaNFe.modelo")]
-        public int Modelo { get; private set; }
-
-        //CNPJ/CPF do emitente da nota fiscal
-        [JsonPropertyName("listaNFe.cnpjcpf")]
-        public string Documento { get; private set; }
-
-        [JsonPropertyName("listaNFe.razaoSocial")]
-        public string RazaoSocial { get; private set; }
-
-        [JsonPropertyName("listaNFe.dthrEmissao")]
-        public DateTime Emissao { get; private set; }
-
-        [JsonPropertyName("listaNFe.tipo")]
-        public string TipoNfe { get; private set; }
-
-        [JsonPropertyName("listaNFe.emissao")]
-        public string TipoEmissao { get; private set; }
-
-        [JsonPropertyName("listaNFe.valor")]
-        public decimal Valor { get; private set; }
-
-        [JsonPropertyName("listaNFe.situacao")]
-        public string SituacaoNfe { get; private set; }
-
-        //Data e hora que entrou no sistema
-        [JsonPropertyName("listaNFe.dthrCad")]
-        public DateTime EntradaSistema { get; private set; }
-
-        [JsonPropertyName("listaNFe.cancelada")]
-        public bool Cancelada { get; private set; }
-
-        [JsonPropertyName("listaNFe.manifestada")]
-        public bool Manifestada { get; private set; }
-
-        [JsonPropertyName("listaNFe.ccorrecao")]
-        public bool CartaCorrecao { get; private set; }
-
-        [JsonPropertyName("listaNFe.conferida")]
-        public bool Conferida { get; private set; }
-
-        [JsonPropertyName("resumo.qtRegistros")]
+    public class Resumo
+    {
+        [JsonPropertyName("qtRegistros")]
         public int QtdeTotal { get; private set; }
 
-        [JsonPropertyName("resumo.vlrTotal")]
+        [JsonPropertyName("vlrTotal")]
         public decimal ValorTotal { get; private set; }
 
-        [JsonPropertyName("resumo.qtRegistrosCanceladas")]
-        public int QtdeTotalCanceladas { get; private set; }
+        [JsonPropertyName("qtRegistrosCanceladas")]
+        public int QtdeCanceladas { get; private set; }
 
-        [JsonPropertyName("resumo.vlrCanceladas")]
-        public decimal ValorTotalCanceladas { get; private set; }
+        [JsonPropertyName("vlrCanceladas")]
+        public decimal ValorCancelado { get; private set; }
+    }
+
+    public class NotaFiscal
+    {
+        [JsonPropertyName("idEmpresa")]
+        public int IdEmpresa { get; private set; }
+
+        [JsonPropertyName("id")]
+        public int Id { get; private set; }
+
+        [JsonPropertyName("chave")]
+        public string Chave { get; private set; }
+
+        [JsonPropertyName("natOp")]
+        public string NaturezaOperacao { get; private set; }
+
+        [JsonPropertyName("numero")]
+        public int Numero { get; private set; }
+
+        [JsonPropertyName("serie")]
+        public int Serie { get; private set; }
+
+        [JsonPropertyName("modelo")]
+        public int Modelo { get; private set; }
+
+        [JsonPropertyName("cnpjcpf")]
+        public string DocumentoEmitente { get; private set; }
+
+        [JsonPropertyName("razaoSocial")]
+        public string RazaoSocial { get; private set; }
+
+        [JsonPropertyName("dthrEmissao")]
+        public DateTime DataHoraEmissao { get; private set; }
+
+        [JsonPropertyName("tipo")]
+        public string Tipo { get; private set; }
+
+        [JsonPropertyName("emissao")]
+        public string TipoEmissao { get; private set; }
+
+        [JsonPropertyName("valor")]
+        public decimal Valor { get; private set; }
+
+        [JsonPropertyName("situacao")]
+        public int Situacao { get; private set; }
+
+        [JsonPropertyName("dthrCad")]
+        public DateTime DataHoraCadastro { get; private set; }
+
+        [JsonPropertyName("cancelada")]
+        public bool Cancelada { get; private set; }
+
+        [JsonPropertyName("manifestada")]
+        public bool Manifestada { get; private set; }
+
+        [JsonPropertyName("ccorrecao")]
+        public bool CartaCorrecao { get; private set; }
+
+        [JsonPropertyName("conferida")]
+        public bool Conferida { get; private set; }
+
+        [JsonPropertyName("tag")]
+        public Tag Tag { get; private set; }
+    }
+    public class Tag
+    {
+        [JsonPropertyName("id")]
+        public int Id { get; private set; }
+
+        [JsonPropertyName("letra")]
+        public string Letra { get; private set; }
+
+        [JsonPropertyName("cor")]
+        public string Cor { get; private set; }
+
+        [JsonPropertyName("descricao")]
+        public string Descricao { get; private set; }
+
+        [JsonPropertyName("dtCadastro")]
+        public DateTime? DataCadastro { get; private set; }
+
+        [JsonPropertyName("dtAlteracao")]
+        public DateTime? DataAlteracao { get; private set; }
     }
 }

@@ -13,12 +13,12 @@ namespace Aplication.UseCase
             _apiService = apiService;
         }
 
-        public async Task<ListaNfe?> Execute(Usuario usuario, Parametros parametros)
+        public async Task<Rootobject> Execute(Usuario usuario, Parametros parametros)
         {
             var endpoint = "https://back-dfe.4lions.com.br/dfe/v1/public/GetListaNFe";
 
             var data = await _apiService.GetDataAsync(endpoint, usuario, parametros);
-            return JsonSerializer.Deserialize<ListaNfe>(data);
+            return JsonSerializer.Deserialize<Rootobject>(data);
         }
     }
 }

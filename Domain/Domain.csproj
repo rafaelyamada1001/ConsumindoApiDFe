@@ -7,9 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entity\**" />
     <Compile Remove="Models\NovaPasta\**" />
+    <EmbeddedResource Remove="Entity\**" />
     <EmbeddedResource Remove="Models\NovaPasta\**" />
+    <None Remove="Entity\**" />
     <None Remove="Models\NovaPasta\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Models\Class1.cs" />
+    <Compile Remove="Models\Empresa.cs" />
+    <Compile Remove="Models\Perfil.cs" />
+    <Compile Remove="Models\Teste.cs" />
   </ItemGroup>
 
   <ItemGroup>

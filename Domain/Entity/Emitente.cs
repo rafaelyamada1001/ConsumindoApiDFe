@@ -4,19 +4,16 @@ namespace Domain.Entity
 {
     public class Emitente
     {
-        [JsonPropertyName("emitente.cnpj")]
-        public int Cnpj { get; private set; }
+        [JsonPropertyName("cnpj")]
+        public string Cnpj { get; private set; }
 
-        [JsonPropertyName("emitente.razaoSocial")]
+        [JsonPropertyName("razaoSocial")]
         public string RazaoSocial { get; private set; }
 
-        [JsonPropertyName("emitente.ie")]
-        public int InscricaoEstadual { get; private set; }
-        
-        [JsonPropertyName("emitente.im")]
-        public int InscricaoMunicipal { get; private set; }
+        [JsonPropertyName("nomeFantasia")]
+        public string NomeFantasia { get; private set; }
 
-        [JsonPropertyName("emitente.uf")]
-        public string UF { get; private set; }
+        [JsonPropertyName("endereco")]
+        public EmitenteEndereco Endereco { get; private set; }
     }
 }

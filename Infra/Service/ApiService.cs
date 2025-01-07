@@ -18,7 +18,6 @@ namespace Infra.Service
         {
             var uriBuilder = new UriBuilder(endpoint);
 
-            // Lista de parâmetros dinâmicos (somente adiciona os preenchidos)
             var query = new List<string>();
 
             if (!string.IsNullOrEmpty(parametros.Empresa))

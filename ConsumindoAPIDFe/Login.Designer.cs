@@ -68,6 +68,7 @@
             txtSenha.PlaceholderText = "Senha";
             txtSenha.Size = new Size(291, 27);
             txtSenha.TabIndex = 1;
+            txtSenha.Text = "raf1713";
             // 
             // txtUsuario
             // 
@@ -78,6 +79,7 @@
             txtUsuario.Size = new Size(291, 27);
             txtUsuario.TabIndex = 0;
             txtUsuario.Tag = "";
+            txtUsuario.Text = "rafael.yamada@fourlions.com.br";
             // 
             // Login
             // 

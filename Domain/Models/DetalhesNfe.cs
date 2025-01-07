@@ -1,5 +1,4 @@
-﻿using Domain.Entity;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Domain.Models
 {
@@ -62,23 +61,6 @@ namespace Domain.Models
         [JsonPropertyName("infAdProd")]
         public string InformacoesAdicionaisProduto { get; private set; }
 
-        [JsonPropertyName("emitente")]
-        public Emitente Emitente { get; private set; }
-
-        [JsonPropertyName("emitente.endereco")]
-        public EmitenteEndereco EnderecoEmitente { get; private set; }
-
-        [JsonPropertyName("totais")]
-        public Total Totais { get; private set; }
-
-        [JsonPropertyName("item")]
-        public Item Item { get; private set; }
-
-        [JsonPropertyName("fpgto")]
-        public FormaPagamento Pagamento { get; private set; }
-
-        [JsonPropertyName("transp")]
-        public Transportador Transportadora { get; private set; }
 
     }
 }

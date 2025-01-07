@@ -11,25 +11,55 @@ namespace Domain.Models
         }
 
         [JsonPropertyName("autorizado")]
-        public bool Autorizado { get; private set; }
+        public bool Autorizado { get; set; }
 
         [JsonPropertyName("id")]
-        public int Id { get; private set; }
+        public int Id { get;  set; }
 
         [JsonPropertyName("nome")]
-        public string Nome { get; private set; }
+        public string Nome { get; set; }
 
         [JsonPropertyName("senha")]
-        public string Token { get; private set; }
+        public string Token { get; set; }
 
         [JsonPropertyName("msg")]
-        public string? Mensagem { get; private set; }
+        public string? Mensagem { get;  set; }
 
         [JsonPropertyName("status")]
-        public string Status { get; private set; }
+        public string Status { get; set; }
         public string Email { get;  set; }
 
         [JsonPropertyName("empresa")]
         public List<Empresa> Empresas { get; set; } // Lista de empresas associadas ao usuário
+    }
+    public class Empresa
+    {
+        [JsonPropertyName("acao")]
+        public int Acao { get; set; }
+
+        [JsonPropertyName("id")]
+        public int Id { get; set; }
+
+        [JsonPropertyName("status")]
+        public string Status { get; set; }
+
+        [JsonPropertyName("cnpjcpf")]
+        public string CnpjCpf { get; set; }
+
+        [JsonPropertyName("nome")]
+        public string Nome { get; set; }
+
+        public Perfil Perfil { get; set; } // Perfil da empresa
+    }
+    public class Perfil
+    {
+        [JsonPropertyName("nfeDownload")]
+        public string NfeDownload { get; set; }
+
+        [JsonPropertyName("cteDownload")]
+        public string CteDownload { get; set; }
+
+        [JsonPropertyName("nfseEmissao")]
+        public string NfseEmissao { get; set; }
     }
 }

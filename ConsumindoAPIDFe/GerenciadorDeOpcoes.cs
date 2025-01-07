@@ -47,34 +47,30 @@ namespace ConsumindoAPIDFe
         }
         private async void btnDetalhesNFe_Click(object sender, EventArgs e)
         {
-
             try
             {
-                // Cria e inicializa o objeto Parametros
                 var parametros = new Parametros
                 {
                     Chave = txtChaveNfe.Text,
                     //Empresa = null
                 };
 
-                // Chama o método que consome a API, passando os parâmetros corretamente
                 var detalheNfe = await _getNfeUseCase.Execute(Usuario, parametros);
                 if (detalheNfe != null)
                 {
 
                     dgvNfe.DataSource = null;
-                    dgvNfe.DataSource = detalheNfe;
+                    dgvNfe.DataSource = detalheNfe.doc.totais;
                 }
                 else
                 {
                     MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                // Aqui você pode processar o resultado retornado
+
                 MessageBox.Show("Detalhes da NFe obtidos com sucesso!");
             }
             catch (Exception ex)
             {
-                // Trata erros
                 MessageBox.Show($"Erro ao obter os detalhes da NFe: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         
@@ -104,7 +100,7 @@ namespace ConsumindoAPIDFe
                 {
                     MessageBox.Show("Detalhes da NF-e obtidos com sucesso!");
 
-                    dgvNfe.DataSource = detalhes;
+                    dgvNfe.DataSource = detalhes.listaNFe;
                 }
                 else
                 {
@@ -126,31 +122,29 @@ namespace ConsumindoAPIDFe
         {
             try
             {
-                // Cria e inicializa o objeto Parametros
+
                 var parametros = new Parametros
                 {
-                    Chave = txtChaveNfe.Text, // Passa o valor da chave da nota fiscal
+                    Chave = txtChaveNfe.Text, 
                     Empresa = cmbEmpresa.SelectedValue?.ToString()
                 };
 
-                // Chama o método que consome a API, passando os parâmetros corretamente
-                var eventosNfe = await _getNfeUseCase.Execute(Usuario, parametros);
+                var eventosNfe = await _getEventosNfeUseCase.Execute(Usuario, parametros);
                 if (eventosNfe != null)
                 {
 
                     dgvNfe.DataSource = null;
-                    dgvNfe.DataSource = eventosNfe;
+                    dgvNfe.DataSource = eventosNfe.ListaEvento;
                 }
                 else
                 {
                     MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                // Aqui você pode processar o resultado retornado
+
                 MessageBox.Show("Eventos da NFe obtidos com sucesso!");
             }
             catch (Exception ex)
             {
-                // Trata erros
                 MessageBox.Show($"Erro ao obter os detalhes da NFe: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -159,11 +153,11 @@ namespace ConsumindoAPIDFe
         {
             try
             {
-                // Obtém os valores necessários
+
                 var parametros = new Parametros
                 {
-                    Empresa = cmbEmpresa.SelectedValue?.ToString(), // Obtém o ID da empresa selecionada
-                    Chave = txtChaveNfe.Text // Obtém a chave informada no TextBox
+                    Empresa = cmbEmpresa.SelectedValue?.ToString(),
+                    Chave = txtChaveNfe.Text 
                 };
 
                 if (string.IsNullOrEmpty(parametros.Empresa) || string.IsNullOrEmpty(parametros.Chave))
@@ -177,7 +171,7 @@ namespace ConsumindoAPIDFe
 
                 MessageBox.Show("PDF da NF-e obtido com sucesso!");
 
-                // Aqui você pode salvar ou exibir o PDF
+                // salvar ou exibir o PDF
                 // Exemplo para salvar o PDF em disco:
                 // File.WriteAllBytes("Caminho_Arquivo.pdf", pdfNfe.Conteudo);
             }

@@ -4,38 +4,55 @@ namespace Domain.Models
 {
     public class EventosNfe
     {
-        [JsonPropertyName("ret.sucesso")]
-        public bool Retorno { get; private set; }
+        [JsonPropertyName("sucesso")]
+        public bool Retorno { get; set; }
 
-        [JsonPropertyName("ret.msg")]
-        public string Menssagem { get; private set; }
+        [JsonPropertyName("msg")]
+        public string Mensagem { get; set; }
 
-        [JsonPropertyName("listaEvento.orgao")]
-        public int CodigoOrgao { get; private set; }
+        [JsonPropertyName("listaEvento")]
+        public List<EventoNfe> ListaEvento { get; set; }
+    }
 
-        [JsonPropertyName("listaEvento.dhEvento")]
-        public DateTime HoraEvento { get; private set; }
+    public class EventoNfe
+    {
+        [JsonPropertyName("orgao")]
+        public int CodigoOrgao { get; set; }
 
-        [JsonPropertyName("listaEvento.tpEvento")]
-        public string TipoEvento { get; private set; }
+        [JsonPropertyName("dhEvento")]
+        public DateTime HoraEvento { get; set; }
 
-        [JsonPropertyName("listaEvento.seqEvento")]
-        public int SequencialEvento { get; private set; }
+        [JsonPropertyName("tpEvento")]
+        public string TipoEvento { get; set; }
 
-        [JsonPropertyName("listaEvento.descEvento")]
-        public string Descricao { get; private set; }
+        [JsonPropertyName("seqEvento")]
+        public int SequencialEvento { get; set; }
 
-        [JsonPropertyName("listaEvento.nProt")]
-        public int Protocolo { get; private set; }
+        [JsonPropertyName("descEvento")]
+        public string Descricao { get; set; }
 
-        [JsonPropertyName("listaEvento.xJust")]
-        public string Justificativa { get; private set; }
+        [JsonPropertyName("nProt")]
+        public string Protocolo { get; set; } // Corrigido para string conforme o JSON
 
-        [JsonPropertyName("listaEvento.xCorrecao")]
-        public string Motivo { get; private set; }
+        [JsonPropertyName("xJust")]
+        public string Justificativa { get; set; }
 
-        [JsonPropertyName("listaEvento.xCondUso")]
-        public string Condicao { get; private set; }
+        [JsonPropertyName("xCorrecao")]
+        public string Motivo { get; set; }
 
+        [JsonPropertyName("xCondUso")]
+        public string Condicao { get; set; }
+
+        [JsonPropertyName("periodo")]
+        public string Periodo { get; set; }
+
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("idEvento")]
+        public string IdEvento { get; set; }
+
+        [JsonPropertyName("tpEventoInterno")]
+        public int TipoEventoInterno { get; set; }
     }
 }
