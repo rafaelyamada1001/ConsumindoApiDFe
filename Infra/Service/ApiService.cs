@@ -17,7 +17,7 @@ namespace Infra.Service
         public async Task<string> GetDataAsync(string endpoint, Usuario usuario, Parametros parametros)
         {
             var uriBuilder = new UriBuilder(endpoint);
-
+            
             var query = new List<string>();
 
             if (!string.IsNullOrEmpty(parametros.Empresa))

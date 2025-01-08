@@ -1,5 +1,6 @@
 ﻿using Aplication.UseCase;
 using Domain.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsumindoAPIDFe
 {
@@ -9,16 +10,18 @@ namespace ConsumindoAPIDFe
         private readonly GetEventosNfeUseCase _getEventosNfeUseCase;
         private readonly GetNfeUseCase _getNfeUseCase;
         private readonly GetNfeByChaveUseCase _getNfeByChaveUseCase;
+        private readonly IServiceProvider _serviceProvider;
 
-        public Usuario Usuario { get; set; } // Propriedade para armazenar o usuário autenticado       
+        public Usuario Usuario { get; set; }  
 
 
-        public GerenciadorDeOpcoes(GetListaNfeUseCase getListaNfeUseCase, GetEventosNfeUseCase getEventosNfeUseCase, GetNfeUseCase getNfeUseCase, GetNfeByChaveUseCase getNfeByChaveUseCase)
+        public GerenciadorDeOpcoes(GetListaNfeUseCase getListaNfeUseCase, GetEventosNfeUseCase getEventosNfeUseCase, GetNfeUseCase getNfeUseCase, GetNfeByChaveUseCase getNfeByChaveUseCase, IServiceProvider serviceProvider)
         {
             _getListaNfeUseCase = getListaNfeUseCase;
             _getEventosNfeUseCase = getEventosNfeUseCase;
             _getNfeUseCase = getNfeUseCase;
             _getNfeByChaveUseCase = getNfeByChaveUseCase;
+            _serviceProvider = serviceProvider;
             InitializeComponent();
 
             Load += new EventHandler(GerenciadorDeOpcoes_Load);
@@ -45,36 +48,20 @@ namespace ConsumindoAPIDFe
                 MessageBox.Show("Nenhuma empresa associada ao usuário.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        private async void btnDetalhesNFe_Click(object sender, EventArgs e)
+        private void btnDetalhesNFe_Click(object sender, EventArgs e)
         {
             try
             {
-                var parametros = new Parametros
-                {
-                    Chave = txtChaveNfe.Text,
-                    //Empresa = null
-                };
-
-                var detalheNfe = await _getNfeUseCase.Execute(Usuario, parametros);
-                if (detalheNfe != null)
-                {
-
-                    dgvNfe.DataSource = null;
-                    dgvNfe.DataSource = detalheNfe.doc.totais;
-                }
-                else
-                {
-                    MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-                MessageBox.Show("Detalhes da NFe obtidos com sucesso!");
+                var menuDetalhesNfe = _serviceProvider.GetRequiredService<MenuDetalhesNfe>();
+                menuDetalhesNfe.Usuario = Usuario;
+                menuDetalhesNfe.Show();
+                
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao obter os detalhes da NFe: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao abrir o formulário: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        
-    }
+        }
 
         private async void btnListarNFe_Click(object sender, EventArgs e)
         {
@@ -97,10 +84,12 @@ namespace ConsumindoAPIDFe
                 var detalhes = await _getListaNfeUseCase.Execute(Usuario, parametros);
 
                 if (detalhes != null)
-                {
-                    MessageBox.Show("Detalhes da NF-e obtidos com sucesso!");
-
+                {                   
                     dgvNfe.DataSource = detalhes.listaNFe;
+                    txtTotalNotas.Text = detalhes.resumo.qtRegistros.ToString();
+                    txtVlrTotal.Text = detalhes.resumo.vlrTotal.ToString();
+                    txtNotasCanceladas.Text = detalhes.resumo.qtRegistrosCanceladas.ToString();
+                    txtVlrCancelado.Text = detalhes.resumo.vlrCanceladas.ToString();
                 }
                 else
                 {

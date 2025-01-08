@@ -133,29 +133,29 @@ public class Item
     public float qtde { get; set; }
     public float vlrUnit { get; set; }
     public float vlrTotal { get; set; }
-    public string eanTrib { get; set; }
-    public string unidadeTrib { get; set; }
-    public string qtdeTrib { get; set; }
-    public string vlrUnitTrib { get; set; }
-    public int vlrFrete { get; set; }
-    public int vlrSeg { get; set; }
-    public float vlrDesc { get; set; }
-    public int vlrOutro { get; set; }
-    public string indTot { get; set; }
-    public string indTotDesc { get; set; }
-    public object nroPedido { get; set; }
-    public int itemPedido { get; set; }
-    public object nroFCI { get; set; }
-    public Med med { get; set; }
-    public Veicprod veicProd { get; set; }
-    public Icms icms { get; set; }
-    public Ipi ipi { get; set; }
-    public Ii ii { get; set; }
-    public Pis pis { get; set; }
-    public Cofins cofins { get; set; }
-    public Issqn issqn { get; set; }
-    public Pisst pisST { get; set; }
-    public Cofinsst cofinsST { get; set; }
+    //public string eanTrib { get; set; }
+    //public string unidadeTrib { get; set; }
+    //public string qtdeTrib { get; set; }
+    //public string vlrUnitTrib { get; set; }
+    //public int vlrFrete { get; set; }
+    //public int vlrSeg { get; set; }
+    //public float vlrDesc { get; set; }
+    //public int vlrOutro { get; set; }
+    //public string indTot { get; set; }
+    //public string indTotDesc { get; set; }
+    //public object nroPedido { get; set; }
+    //public int itemPedido { get; set; }
+    //public object nroFCI { get; set; }
+    //public Med med { get; set; }
+    //public Veicprod veicProd { get; set; }
+    //public Icms icms { get; set; }
+    //public Ipi ipi { get; set; }
+    //public Ii ii { get; set; }
+    //public Pis pis { get; set; }
+    //public Cofins cofins { get; set; }
+    //public Issqn issqn { get; set; }
+    //public Pisst pisST { get; set; }
+    //public Cofinsst cofinsST { get; set; }
 }
 
 public class Med

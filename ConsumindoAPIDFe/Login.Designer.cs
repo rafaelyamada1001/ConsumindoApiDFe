@@ -69,6 +69,7 @@
             txtSenha.Size = new Size(291, 27);
             txtSenha.TabIndex = 1;
             txtSenha.Text = "raf1713";
+            txtSenha.UseSystemPasswordChar = true;
             // 
             // txtUsuario
             // 

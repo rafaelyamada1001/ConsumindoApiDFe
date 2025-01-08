@@ -54,6 +54,14 @@
             btnPdfNFe = new Button();
             btnDetalhesNFe = new Button();
             btnListarNFe = new Button();
+            txtTotalNotas = new TextBox();
+            txtVlrTotal = new TextBox();
+            txtNotasCanceladas = new TextBox();
+            txtVlrCancelado = new TextBox();
+            lblTotalNotas = new Label();
+            lblVlrTotal = new Label();
+            lblNotasCanceladas = new Label();
+            lblVlrCancelado = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvNfe).BeginInit();
             grpOpcoes.SuspendLayout();
             SuspendLayout();
@@ -62,8 +70,9 @@
             // 
             dgvNfe.BackgroundColor = SystemColors.ControlLightLight;
             dgvNfe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvNfe.Location = new Point(12, 192);
+            dgvNfe.Location = new Point(12, 245);
             dgvNfe.Name = "dgvNfe";
+            dgvNfe.ReadOnly = true;
             dgvNfe.Size = new Size(956, 317);
             dgvNfe.TabIndex = 0;
             dgvNfe.CellContentClick += dgvNfe_CellContentClick;
@@ -313,12 +322,97 @@
             btnListarNFe.UseVisualStyleBackColor = false;
             btnListarNFe.Click += btnListarNFe_Click;
             // 
+            // txtTotalNotas
+            // 
+            txtTotalNotas.BackColor = Color.PaleGreen;
+            txtTotalNotas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtTotalNotas.Location = new Point(12, 216);
+            txtTotalNotas.Name = "txtTotalNotas";
+            txtTotalNotas.ReadOnly = true;
+            txtTotalNotas.Size = new Size(100, 23);
+            txtTotalNotas.TabIndex = 2;
+            // 
+            // txtVlrTotal
+            // 
+            txtVlrTotal.BackColor = Color.PaleGreen;
+            txtVlrTotal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtVlrTotal.Location = new Point(128, 216);
+            txtVlrTotal.Name = "txtVlrTotal";
+            txtVlrTotal.ReadOnly = true;
+            txtVlrTotal.Size = new Size(100, 23);
+            txtVlrTotal.TabIndex = 3;
+            // 
+            // txtNotasCanceladas
+            // 
+            txtNotasCanceladas.BackColor = Color.Salmon;
+            txtNotasCanceladas.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtNotasCanceladas.Location = new Point(247, 216);
+            txtNotasCanceladas.Name = "txtNotasCanceladas";
+            txtNotasCanceladas.ReadOnly = true;
+            txtNotasCanceladas.Size = new Size(100, 23);
+            txtNotasCanceladas.TabIndex = 4;
+            // 
+            // txtVlrCancelado
+            // 
+            txtVlrCancelado.BackColor = Color.Salmon;
+            txtVlrCancelado.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtVlrCancelado.Location = new Point(365, 216);
+            txtVlrCancelado.Name = "txtVlrCancelado";
+            txtVlrCancelado.ReadOnly = true;
+            txtVlrCancelado.Size = new Size(100, 23);
+            txtVlrCancelado.TabIndex = 5;
+            // 
+            // lblTotalNotas
+            // 
+            lblTotalNotas.AutoSize = true;
+            lblTotalNotas.BackColor = SystemColors.Highlight;
+            lblTotalNotas.Location = new Point(12, 198);
+            lblTotalNotas.Name = "lblTotalNotas";
+            lblTotalNotas.Size = new Size(44, 15);
+            lblTotalNotas.TabIndex = 6;
+            lblTotalNotas.Text = "Notas :";
+            // 
+            // lblVlrTotal
+            // 
+            lblVlrTotal.AutoSize = true;
+            lblVlrTotal.Location = new Point(128, 198);
+            lblVlrTotal.Name = "lblVlrTotal";
+            lblVlrTotal.Size = new Size(67, 15);
+            lblVlrTotal.TabIndex = 7;
+            lblVlrTotal.Text = "Valor Total :";
+            // 
+            // lblNotasCanceladas
+            // 
+            lblNotasCanceladas.AutoSize = true;
+            lblNotasCanceladas.Location = new Point(247, 198);
+            lblNotasCanceladas.Name = "lblNotasCanceladas";
+            lblNotasCanceladas.Size = new Size(107, 15);
+            lblNotasCanceladas.TabIndex = 8;
+            lblNotasCanceladas.Text = "Notas Canceladas :";
+            // 
+            // lblVlrCancelado
+            // 
+            lblVlrCancelado.AutoSize = true;
+            lblVlrCancelado.Location = new Point(365, 198);
+            lblVlrCancelado.Name = "lblVlrCancelado";
+            lblVlrCancelado.Size = new Size(98, 15);
+            lblVlrCancelado.TabIndex = 9;
+            lblVlrCancelado.Text = "Valor Cancelado :";
+            // 
             // GerenciadorDeOpcoes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
-            ClientSize = new Size(980, 521);
+            ClientSize = new Size(979, 574);
+            Controls.Add(lblVlrCancelado);
+            Controls.Add(lblNotasCanceladas);
+            Controls.Add(lblVlrTotal);
+            Controls.Add(lblTotalNotas);
+            Controls.Add(txtVlrCancelado);
+            Controls.Add(txtNotasCanceladas);
+            Controls.Add(txtVlrTotal);
+            Controls.Add(txtTotalNotas);
             Controls.Add(grpOpcoes);
             Controls.Add(dgvNfe);
             Name = "GerenciadorDeOpcoes";
@@ -328,6 +422,7 @@
             grpOpcoes.ResumeLayout(false);
             grpOpcoes.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -358,5 +453,13 @@
         private Label lblRazaoSocial;
         private TextBox txtRazaoSocial;
         private TextBox txtCnpjCpf;
+        private TextBox txtTotalNotas;
+        private TextBox txtVlrTotal;
+        private TextBox txtNotasCanceladas;
+        private TextBox txtVlrCancelado;
+        private Label lblTotalNotas;
+        private Label lblVlrTotal;
+        private Label lblNotasCanceladas;
+        private Label lblVlrCancelado;
     }
 }

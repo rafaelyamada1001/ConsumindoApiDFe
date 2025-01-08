@@ -44,6 +44,11 @@ namespace ConsumindoAPIDFe
             // Registro dos formulários
             services.AddTransient<Login>();
             services.AddTransient<GerenciadorDeOpcoes>();
+            services.AddTransient<MenuDetalhesNfe>();
+            services.AddTransient<DetalhesNfe>();
+            services.AddTransient<Totais>();
+            services.AddTransient<Transporte>();
+            services.AddTransient<Informacoes>();
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Aplication.UseCase
 
         public async Task<PdfNfe> Execute(Usuario usuario, Parametros parametros)
         {
-            var endpoint = "https://back-dfe.4lions.tec.br/dfe/v1/public/GetNFeByChave/:idEmpresa/:chNFe";
+            var endpoint = "https://backend.4lions.tec.br/dfe/v1/public/GetDANFE";
 
             var data = await _apiService.GetDataAsync(endpoint, usuario, parametros);
             return JsonSerializer.Deserialize<PdfNfe>(data);

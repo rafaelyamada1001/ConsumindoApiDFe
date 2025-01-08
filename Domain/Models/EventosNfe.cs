@@ -32,7 +32,7 @@ namespace Domain.Models
         public string Descricao { get; set; }
 
         [JsonPropertyName("nProt")]
-        public string Protocolo { get; set; } // Corrigido para string conforme o JSON
+        public string Protocolo { get; set; } 
 
         [JsonPropertyName("xJust")]
         public string Justificativa { get; set; }
@@ -40,19 +40,19 @@ namespace Domain.Models
         [JsonPropertyName("xCorrecao")]
         public string Motivo { get; set; }
 
-        [JsonPropertyName("xCondUso")]
-        public string Condicao { get; set; }
+        //[JsonPropertyName("xCondUso")]
+        //public string Condicao { get; set; }
 
-        [JsonPropertyName("periodo")]
-        public string Periodo { get; set; }
+        //[JsonPropertyName("periodo")]
+        //public string Periodo { get; set; }
 
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
+        //[JsonPropertyName("id")]
+        //public string Id { get; set; }
 
-        [JsonPropertyName("idEvento")]
-        public string IdEvento { get; set; }
+        //[JsonPropertyName("idEvento")]
+        //public string IdEvento { get; set; }
 
-        [JsonPropertyName("tpEventoInterno")]
-        public int TipoEventoInterno { get; set; }
+        //[JsonPropertyName("tpEventoInterno")]
+        //public int TipoEventoInterno { get; set; }
     }
 }
