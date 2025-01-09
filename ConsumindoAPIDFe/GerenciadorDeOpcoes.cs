@@ -8,23 +8,22 @@ namespace ConsumindoAPIDFe
     {
         private readonly GetListaNfeUseCase _getListaNfeUseCase;
         private readonly GetEventosNfeUseCase _getEventosNfeUseCase;
-        private readonly GetNfeUseCase _getNfeUseCase;
         private readonly GetNfeByChaveUseCase _getNfeByChaveUseCase;
         private readonly IServiceProvider _serviceProvider;
 
-        public Usuario Usuario { get; set; }  
+        public Usuario Usuario { get; set; }
 
 
-        public GerenciadorDeOpcoes(GetListaNfeUseCase getListaNfeUseCase, GetEventosNfeUseCase getEventosNfeUseCase, GetNfeUseCase getNfeUseCase, GetNfeByChaveUseCase getNfeByChaveUseCase, IServiceProvider serviceProvider)
+        public GerenciadorDeOpcoes(GetListaNfeUseCase getListaNfeUseCase, GetEventosNfeUseCase getEventosNfeUseCase, GetNfeByChaveUseCase getNfeByChaveUseCase, IServiceProvider serviceProvider)
         {
             _getListaNfeUseCase = getListaNfeUseCase;
             _getEventosNfeUseCase = getEventosNfeUseCase;
-            _getNfeUseCase = getNfeUseCase;
             _getNfeByChaveUseCase = getNfeByChaveUseCase;
             _serviceProvider = serviceProvider;
             InitializeComponent();
 
             Load += new EventHandler(GerenciadorDeOpcoes_Load);
+            FormClosing += GerenciadorDeOpcoes_FormClosing;
         }
         private void GerenciadorDeOpcoes_Load(object sender, EventArgs e)
         {
@@ -32,12 +31,9 @@ namespace ConsumindoAPIDFe
             {
                 cmbEmpresa.DataSource = null;
 
-                // Define a lista de empresas como fonte de dados
                 cmbEmpresa.DataSource = Usuario.Empresas;
-
-                // Define qual propriedade será exibida e qual será o valor associado
                 cmbEmpresa.DisplayMember = "Nome";
-                cmbEmpresa.ValueMember = "Id";    
+                cmbEmpresa.ValueMember = "Id";
 
                 cmbEmpresa.SelectedIndex = 0;
                 cmbTipo.SelectedIndex = 0;
@@ -55,7 +51,7 @@ namespace ConsumindoAPIDFe
                 var menuDetalhesNfe = _serviceProvider.GetRequiredService<MenuDetalhesNfe>();
                 menuDetalhesNfe.Usuario = Usuario;
                 menuDetalhesNfe.Show();
-                
+
             }
             catch (Exception ex)
             {
@@ -84,12 +80,12 @@ namespace ConsumindoAPIDFe
                 var detalhes = await _getListaNfeUseCase.Execute(Usuario, parametros);
 
                 if (detalhes != null)
-                {                   
-                    dgvNfe.DataSource = detalhes.listaNFe;
-                    txtTotalNotas.Text = detalhes.resumo.qtRegistros.ToString();
-                    txtVlrTotal.Text = detalhes.resumo.vlrTotal.ToString();
-                    txtNotasCanceladas.Text = detalhes.resumo.qtRegistrosCanceladas.ToString();
-                    txtVlrCancelado.Text = detalhes.resumo.vlrCanceladas.ToString();
+                {
+                    dgvNfe.DataSource = detalhes.Dados.listaNFe;
+                    txtTotalNotas.Text = detalhes.Dados.resumo.qtRegistros.ToString();
+                    txtVlrTotal.Text = detalhes.Dados.resumo.vlrTotal.ToString();
+                    txtNotasCanceladas.Text = detalhes.Dados.resumo.qtRegistrosCanceladas.ToString();
+                    txtVlrCancelado.Text = detalhes.Dados.resumo.vlrCanceladas.ToString();
                 }
                 else
                 {
@@ -111,10 +107,15 @@ namespace ConsumindoAPIDFe
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(txtChaveNfe.Text))
+                {
+                    MessageBox.Show("O campo 'Chave NF-e' é obrigatório para essa rquisição.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 var parametros = new Parametros
                 {
-                    Chave = txtChaveNfe.Text, 
+                    Chave = txtChaveNfe.Text,
                     Empresa = cmbEmpresa.SelectedValue?.ToString()
                 };
 
@@ -123,14 +124,13 @@ namespace ConsumindoAPIDFe
                 {
 
                     dgvNfe.DataSource = null;
-                    dgvNfe.DataSource = eventosNfe.ListaEvento;
+                    dgvNfe.DataSource = eventosNfe.Dados.ListaEvento;
                 }
                 else
                 {
                     MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                MessageBox.Show("Eventos da NFe obtidos com sucesso!");
             }
             catch (Exception ex)
             {
@@ -142,32 +142,41 @@ namespace ConsumindoAPIDFe
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(txtChaveNfe.Text))
+                {
+                    MessageBox.Show("O campo 'Chave NF-e' é obrigatório para essa rquisição.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 var parametros = new Parametros
                 {
                     Empresa = cmbEmpresa.SelectedValue?.ToString(),
-                    Chave = txtChaveNfe.Text 
+                    Chave = txtChaveNfe.Text
                 };
 
-                if (string.IsNullOrEmpty(parametros.Empresa) || string.IsNullOrEmpty(parametros.Chave))
-                {
-                    MessageBox.Show("Empresa e Chave são obrigatórias para essa operação.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Chama o caso de uso para obter o PDF
                 var pdfNfe = await _getNfeByChaveUseCase.Execute(Usuario, parametros);
 
-                MessageBox.Show("PDF da NF-e obtido com sucesso!");
+                if (pdfNfe != null)
+                {
+                    
+                    var caminhoArquivo = @"C:\PdfTeste" + txtChaveNfe.Text + ".pdf";
 
-                // salvar ou exibir o PDF
-                // Exemplo para salvar o PDF em disco:
-                // File.WriteAllBytes("Caminho_Arquivo.pdf", pdfNfe.Conteudo);
+                    
+                    //await File.WriteAllBytesAsync(caminhoArquivo, pdfNfe.Dados.msg);
+
+                    
+                    MessageBox.Show($"PDF da NF-e obtido com sucesso! Salvo em: {caminhoArquivo}", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Não foi possível obter o PDF da NF-e.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao obter o PDF da NF-e: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao obter o PDF: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -194,6 +203,20 @@ namespace ConsumindoAPIDFe
         private void dgvNfe_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+        private void GerenciadorDeOpcoes_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            var result = MessageBox.Show("Tem certeza de que deseja sair da aplicação?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

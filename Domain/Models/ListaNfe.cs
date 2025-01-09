@@ -1,126 +1,60 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Domain.Models
+﻿namespace Domain.Models
 {
     public class ListaNfe
     {
-        [JsonPropertyName("ret")]
-        public Retorno Retorno { get; private set; }
-
-        [JsonPropertyName("resumo")]
-        public Resumo Resumo { get; private set; }
-
-        [JsonPropertyName("listaNFe")]
-        public List<NotaFiscal> Notas { get; private set; }
+        public Ret ret { get; set; }
+        public Resumo resumo { get; set; }
+        public Listanfe[] listaNFe { get; set; }
     }
 
-    public class Retorno
+    public class Ret
     {
-        [JsonPropertyName("sucesso")]
-        public bool Sucesso { get; private set; }
-
-        [JsonPropertyName("msg")]
-        public string Mensagem { get; private set; }
-
-        [JsonPropertyName("id")]
-        public string Id { get; private set; }
+        public bool sucesso { get; set; }
+        public string msg { get; set; }
+        public string id { get; set; }
     }
 
     public class Resumo
     {
-        [JsonPropertyName("qtRegistros")]
-        public int QtdeTotal { get; private set; }
-
-        [JsonPropertyName("vlrTotal")]
-        public decimal ValorTotal { get; private set; }
-
-        [JsonPropertyName("qtRegistrosCanceladas")]
-        public int QtdeCanceladas { get; private set; }
-
-        [JsonPropertyName("vlrCanceladas")]
-        public decimal ValorCancelado { get; private set; }
+        public int qtRegistros { get; set; }
+        public float vlrTotal { get; set; }
+        public int qtRegistrosCanceladas { get; set; }
+        public float vlrCanceladas { get; set; }
     }
 
-    public class NotaFiscal
+    public class Listanfe
     {
-        [JsonPropertyName("idEmpresa")]
-        public int IdEmpresa { get; private set; }
-
-        [JsonPropertyName("id")]
-        public int Id { get; private set; }
-
-        [JsonPropertyName("chave")]
-        public string Chave { get; private set; }
-
-        [JsonPropertyName("natOp")]
-        public string NaturezaOperacao { get; private set; }
-
-        [JsonPropertyName("numero")]
-        public int Numero { get; private set; }
-
-        [JsonPropertyName("serie")]
-        public int Serie { get; private set; }
-
-        [JsonPropertyName("modelo")]
-        public int Modelo { get; private set; }
-
-        [JsonPropertyName("cnpjcpf")]
-        public string DocumentoEmitente { get; private set; }
-
-        [JsonPropertyName("razaoSocial")]
-        public string RazaoSocial { get; private set; }
-
-        [JsonPropertyName("dthrEmissao")]
-        public DateTime DataHoraEmissao { get; private set; }
-
-        [JsonPropertyName("tipo")]
-        public string Tipo { get; private set; }
-
-        [JsonPropertyName("emissao")]
-        public string TipoEmissao { get; private set; }
-
-        [JsonPropertyName("valor")]
-        public decimal Valor { get; private set; }
-
-        [JsonPropertyName("situacao")]
-        public int Situacao { get; private set; }
-
-        [JsonPropertyName("dthrCad")]
-        public DateTime DataHoraCadastro { get; private set; }
-
-        [JsonPropertyName("cancelada")]
-        public bool Cancelada { get; private set; }
-
-        [JsonPropertyName("manifestada")]
-        public bool Manifestada { get; private set; }
-
-        [JsonPropertyName("ccorrecao")]
-        public bool CartaCorrecao { get; private set; }
-
-        [JsonPropertyName("conferida")]
-        public bool Conferida { get; private set; }
-
-        [JsonPropertyName("tag")]
-        public Tag Tag { get; private set; }
+        public bool flag { get; set; }
+        public string chave { get; set; }
+        public int numero { get; set; }
+        public int modelo { get; set; }
+        public string cnpjcpf { get; set; }
+        public string razaoSocial { get; set; }
+        public DateTime dthrEmissao { get; set; }
+        public string natOp { get; set; }
+        public string tipo { get; set; }
+        public string emissao { get; set; }
+        public float valor { get; set; }
+        //public int idEmpresa { get; set; }
+        //public int id { get; set; }
+        //public int serie { get; set; }
+        //public object dtEscrituracao { get; set; }
+        //public int situacao { get; set; }
+        //public DateTime dthrCad { get; set; }
+        //public bool cancelada { get; set; }
+        //public bool manifestada { get; set; }
+        //public bool ccorrecao { get; set; }
+        //public bool conferida { get; set; }
+        //public Tag tag { get; set; }
     }
+
     public class Tag
     {
-        [JsonPropertyName("id")]
-        public int Id { get; private set; }
-
-        [JsonPropertyName("letra")]
-        public string Letra { get; private set; }
-
-        [JsonPropertyName("cor")]
-        public string Cor { get; private set; }
-
-        [JsonPropertyName("descricao")]
-        public string Descricao { get; private set; }
-
-        [JsonPropertyName("dtCadastro")]
-        public DateTime? DataCadastro { get; private set; }
-
-        [JsonPropertyName("dtAlteracao")]
-        public DateTime? DataAlteracao { get; private set; }
+        public int id { get; set; }
+        public string letra { get; set; }
+        public string cor { get; set; }
+        public string descricao { get; set; }
+        public DateTime dtCadastro { get; set; }
+        public DateTime dtAlteracao { get; set; }
     }
 }

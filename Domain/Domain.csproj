@@ -18,6 +18,7 @@
   <ItemGroup>
     <Compile Remove="Models\Class1.cs" />
     <Compile Remove="Models\Empresa.cs" />
+    <Compile Remove="Models\PdfNfe.cs" />
     <Compile Remove="Models\Perfil.cs" />
     <Compile Remove="Models\Teste.cs" />
   </ItemGroup>

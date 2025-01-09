@@ -7,7 +7,8 @@ namespace ConsumindoAPIDFe
     public partial class MenuDetalhesNfe : Form
     {
         private readonly GetNfeUseCase _getNfeUseCase;
-        private readonly IServiceProvider _serviceProvider;       
+        private readonly IServiceProvider _serviceProvider;
+
         public Usuario Usuario { get; set; }
         public MenuDetalhesNfe(GetNfeUseCase getNfeUseCase, IServiceProvider serviceProvider)
         {
@@ -19,17 +20,21 @@ namespace ConsumindoAPIDFe
         private async void btnProdutos_Click(object sender, EventArgs e)
         {
 
+            if (string.IsNullOrWhiteSpace(txtChaveNfe.Text))
+            {
+                MessageBox.Show("O campo 'Chave NF-e' é obrigatório para essa requisição.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             var parametros = new Parametros
             {
                 Chave = txtChaveNfe.Text,
             };
 
-            var detalheNfe = await _getNfeUseCase.Execute(Usuario, parametros);
-            if (detalheNfe != null)
+            var resultado = await _getNfeUseCase.Execute(Usuario, parametros);
+            if (resultado != null)
             {
-
                 dgvNfe.DataSource = null;
-                dgvNfe.DataSource = detalheNfe.doc.item;
+                dgvNfe.DataSource = resultado.Dados.doc.item;
             }
             else
             {
@@ -38,59 +43,116 @@ namespace ConsumindoAPIDFe
 
         }
 
-        private void btnNfe_Click(object sender, EventArgs e)
+        private async void btnNfe_ClickAsync(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrWhiteSpace(txtChaveNfe.Text))
             {
-                var detalhesNfe = _serviceProvider.GetRequiredService<DetalhesNfe>();
-                detalhesNfe.Show();
+                MessageBox.Show("O campo 'Chave NF-e' é obrigatório para essa requisição.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            }
-            catch (Exception ex)
+            var parametros = new Parametros
             {
-                MessageBox.Show($"Erro ao abrir o formulário: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                Chave = txtChaveNfe.Text,
+            };
+
+                var resultado = await _getNfeUseCase.Execute(Usuario, parametros);
+                if (resultado != null)
+                {
+                    var detalhesNfe = _serviceProvider.GetRequiredService<DadosNfe>();
+                    detalhesNfe.Detalhes = resultado.Dados;
+                    detalhesNfe.MostrarDetalhes();
+                    detalhesNfe.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            
+
         }
 
-        private void btnTotais_Click(object sender, EventArgs e)
+        private async void btnTotais_ClickAsync(object sender, EventArgs e)
         {
-            try
+
+            if (string.IsNullOrWhiteSpace(txtChaveNfe.Text))
+            {
+                MessageBox.Show("O campo 'Chave NF-e' é obrigatório para essa requisição.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var parametros = new Parametros
+            {
+                Chave = txtChaveNfe.Text,
+            };
+
+            var resultado = await _getNfeUseCase.Execute(Usuario, parametros);
+            if (resultado != null)
             {
                 var totais = _serviceProvider.GetRequiredService<Totais>();
+                totais.Detalhes = resultado.Dados;
+                totais.MostrarTotais();
                 totais.Show();
-
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Erro ao abrir o formulário: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        private void btnTransporte_Click(object sender, EventArgs e)
+        private async void btnTransporte_ClickAsync(object sender, EventArgs e)
         {
-            try
+
+            if (string.IsNullOrWhiteSpace(txtChaveNfe.Text))
+            {
+                MessageBox.Show("O campo 'Chave NF-e' é obrigatório para essa requisição.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var parametros = new Parametros
+            {
+                Chave = txtChaveNfe.Text,
+            };
+
+            var resultado = await _getNfeUseCase.Execute(Usuario, parametros);
+            if (resultado != null)
             {
                 var transporte = _serviceProvider.GetRequiredService<Transporte>();
+                transporte.Detalhes = resultado.Dados;
+                transporte.MostrarTransporte();
                 transporte.Show();
-
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Erro ao abrir o formulário: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
-        private void btnInformacoes_Click(object sender, EventArgs e)
+
+        private async void btnInformacoes_ClickAsync(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrWhiteSpace(txtChaveNfe.Text))
+            {
+                MessageBox.Show("O campo 'Chave NF-e' é obrigatório para essa requisição.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var parametros = new Parametros
+            {
+                Chave = txtChaveNfe.Text,
+            };
+
+            var resultado = await _getNfeUseCase.Execute(Usuario, parametros);
+
+            if (resultado != null)
             {
                 var informacoes = _serviceProvider.GetRequiredService<Informacoes>();
+                informacoes.Detalhes = resultado.Dados;
+                informacoes.MostrarInformacoes();
                 informacoes.Show();
-
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Erro ao abrir o formulário: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

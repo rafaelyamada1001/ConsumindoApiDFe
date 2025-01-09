@@ -37,7 +37,7 @@
             txtNumeracao = new TextBox();
             txtPesoBruto = new TextBox();
             txtPesoliquido = new TextBox();
-            textBox1 = new TextBox();
+            txtNomeFantasia = new TextBox();
             txtCodAntt = new TextBox();
             txtPlacaVeiculo = new TextBox();
             txtUfVeiculo = new TextBox();
@@ -134,13 +134,13 @@
             txtPesoliquido.Size = new Size(122, 23);
             txtPesoliquido.TabIndex = 8;
             // 
-            // textBox1
+            // txtNomeFantasia
             // 
-            textBox1.Location = new Point(283, 60);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(491, 23);
-            textBox1.TabIndex = 9;
+            txtNomeFantasia.Location = new Point(283, 60);
+            txtNomeFantasia.Name = "txtNomeFantasia";
+            txtNomeFantasia.ReadOnly = true;
+            txtNomeFantasia.Size = new Size(491, 23);
+            txtNomeFantasia.TabIndex = 9;
             // 
             // txtCodAntt
             // 
@@ -361,7 +361,7 @@
             Controls.Add(txtUfVeiculo);
             Controls.Add(txtPlacaVeiculo);
             Controls.Add(txtCodAntt);
-            Controls.Add(textBox1);
+            Controls.Add(txtNomeFantasia);
             Controls.Add(txtPesoliquido);
             Controls.Add(txtPesoBruto);
             Controls.Add(txtNumeracao);
@@ -389,7 +389,7 @@
         private TextBox txtNumeracao;
         private TextBox txtPesoBruto;
         private TextBox txtPesoliquido;
-        private TextBox textBox1;
+        private TextBox txtNomeFantasia;
         private TextBox txtCodAntt;
         private TextBox txtPlacaVeiculo;
         private TextBox txtUfVeiculo;

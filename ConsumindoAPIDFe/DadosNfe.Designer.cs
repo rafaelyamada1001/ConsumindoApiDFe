@@ -1,6 +1,6 @@
 ﻿namespace ConsumindoAPIDFe
 {
-    partial class DetalhesNfe
+    partial class DadosNfe
     {
         /// <summary>
         /// Required designer variable.
@@ -46,13 +46,13 @@
             lblRazaoSocial = new Label();
             lblIE = new Label();
             lblUF = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txtDataEmissao = new TextBox();
+            txtDataSaida = new TextBox();
+            txtDataEscrituracao = new TextBox();
             lblDataEmissao = new Label();
             lblDataSaida = new Label();
             lblDataEscrituracao = new Label();
-            textBox4 = new TextBox();
+            txtNatureza = new TextBox();
             lblNatureza = new Label();
             SuspendLayout();
             // 
@@ -61,15 +61,16 @@
             txtChaveNfe.Location = new Point(12, 39);
             txtChaveNfe.Name = "txtChaveNfe";
             txtChaveNfe.ReadOnly = true;
-            txtChaveNfe.Size = new Size(287, 23);
+            txtChaveNfe.Size = new Size(314, 23);
             txtChaveNfe.TabIndex = 0;
+            txtChaveNfe.TextChanged += txtChaveNfe_TextChanged;
             // 
             // txtNumeroNfe
             // 
-            txtNumeroNfe.Location = new Point(314, 39);
+            txtNumeroNfe.Location = new Point(342, 39);
             txtNumeroNfe.Name = "txtNumeroNfe";
             txtNumeroNfe.ReadOnly = true;
-            txtNumeroNfe.Size = new Size(100, 23);
+            txtNumeroNfe.Size = new Size(72, 23);
             txtNumeroNfe.TabIndex = 1;
             // 
             // txtModelo
@@ -108,7 +109,7 @@
             // lblNumeroNfe
             // 
             lblNumeroNfe.AutoSize = true;
-            lblNumeroNfe.Location = new Point(314, 21);
+            lblNumeroNfe.Location = new Point(342, 21);
             lblNumeroNfe.Name = "lblNumeroNfe";
             lblNumeroNfe.Size = new Size(57, 15);
             lblNumeroNfe.TabIndex = 6;
@@ -154,15 +155,15 @@
             txtRazaoSocial.Location = new Point(195, 95);
             txtRazaoSocial.Name = "txtRazaoSocial";
             txtRazaoSocial.ReadOnly = true;
-            txtRazaoSocial.Size = new Size(219, 23);
+            txtRazaoSocial.Size = new Size(299, 23);
             txtRazaoSocial.TabIndex = 11;
             // 
             // txtInscricaoEstadual
             // 
-            txtInscricaoEstadual.Location = new Point(431, 95);
+            txtInscricaoEstadual.Location = new Point(509, 95);
             txtInscricaoEstadual.Name = "txtInscricaoEstadual";
             txtInscricaoEstadual.ReadOnly = true;
-            txtInscricaoEstadual.Size = new Size(178, 23);
+            txtInscricaoEstadual.Size = new Size(100, 23);
             txtInscricaoEstadual.TabIndex = 12;
             // 
             // txtUnidadeFederativa
@@ -194,7 +195,7 @@
             // lblIE
             // 
             lblIE.AutoSize = true;
-            lblIE.Location = new Point(431, 77);
+            lblIE.Location = new Point(509, 77);
             lblIE.Name = "lblIE";
             lblIE.Size = new Size(22, 15);
             lblIE.TabIndex = 16;
@@ -209,29 +210,29 @@
             lblUF.TabIndex = 17;
             lblUF.Text = "UF :";
             // 
-            // textBox1
+            // txtDataEmissao
             // 
-            textBox1.Location = new Point(12, 153);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(168, 23);
-            textBox1.TabIndex = 18;
+            txtDataEmissao.Location = new Point(12, 153);
+            txtDataEmissao.Name = "txtDataEmissao";
+            txtDataEmissao.ReadOnly = true;
+            txtDataEmissao.Size = new Size(168, 23);
+            txtDataEmissao.TabIndex = 18;
             // 
-            // textBox2
+            // txtDataSaida
             // 
-            textBox2.Location = new Point(195, 153);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(148, 23);
-            textBox2.TabIndex = 19;
+            txtDataSaida.Location = new Point(195, 153);
+            txtDataSaida.Name = "txtDataSaida";
+            txtDataSaida.ReadOnly = true;
+            txtDataSaida.Size = new Size(148, 23);
+            txtDataSaida.TabIndex = 19;
             // 
-            // textBox3
+            // txtDataEscrituracao
             // 
-            textBox3.Location = new Point(353, 153);
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(154, 23);
-            textBox3.TabIndex = 20;
+            txtDataEscrituracao.Location = new Point(353, 153);
+            txtDataEscrituracao.Name = "txtDataEscrituracao";
+            txtDataEscrituracao.ReadOnly = true;
+            txtDataEscrituracao.Size = new Size(154, 23);
+            txtDataEscrituracao.TabIndex = 20;
             // 
             // lblDataEmissao
             // 
@@ -260,13 +261,13 @@
             lblDataEscrituracao.TabIndex = 23;
             lblDataEscrituracao.Text = "Data Escrituração :";
             // 
-            // textBox4
+            // txtNatureza
             // 
-            textBox4.Location = new Point(12, 215);
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.Size = new Size(669, 23);
-            textBox4.TabIndex = 24;
+            txtNatureza.Location = new Point(12, 215);
+            txtNatureza.Name = "txtNatureza";
+            txtNatureza.ReadOnly = true;
+            txtNatureza.Size = new Size(669, 23);
+            txtNatureza.TabIndex = 24;
             // 
             // lblNatureza
             // 
@@ -283,13 +284,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(693, 265);
             Controls.Add(lblNatureza);
-            Controls.Add(textBox4);
+            Controls.Add(txtNatureza);
             Controls.Add(lblDataEscrituracao);
             Controls.Add(lblDataSaida);
             Controls.Add(lblDataEmissao);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtDataEscrituracao);
+            Controls.Add(txtDataSaida);
+            Controls.Add(txtDataEmissao);
             Controls.Add(lblUF);
             Controls.Add(lblIE);
             Controls.Add(lblRazaoSocial);
@@ -335,13 +336,13 @@
         private Label lblRazaoSocial;
         private Label lblIE;
         private Label lblUF;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txtDataEmissao;
+        private TextBox txtDataSaida;
+        private TextBox txtDataEscrituracao;
         private Label lblDataEmissao;
         private Label lblDataSaida;
         private Label lblDataEscrituracao;
-        private TextBox textBox4;
+        private TextBox txtNatureza;
         private Label lblNatureza;
     }
 }

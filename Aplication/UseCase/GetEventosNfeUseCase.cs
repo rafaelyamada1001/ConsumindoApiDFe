@@ -1,4 +1,5 @@
-﻿using Aplication.Interfaces;
+﻿using Aplication.DTO;
+using Aplication.Interfaces;
 using Domain.Models;
 using System.Text.Json;
 
@@ -13,12 +14,18 @@ namespace Aplication.UseCase
             _apiService = apiService;
         }
 
-        public async Task<EventosNfe> Execute(Usuario usuario, Parametros paramentros)
+        public async Task<ResponseDefault<EventosNfe>> Execute(Usuario usuario, Parametros paramentros)
         {
             var endpoint = "https://back-dfe.4lions.com.br/dfe/v1/public/GetEventosNFe";
+            var response = await _apiService.GetDataAsync(endpoint, usuario, paramentros);
 
-            var data = await _apiService.GetDataAsync(endpoint, usuario, paramentros);
-            return JsonSerializer.Deserialize<EventosNfe>(data);
+            if (!response.Sucesso) return new ResponseDefault<EventosNfe>(false, response.Mensagem, null);
+
+            var eventosNfe =  JsonSerializer.Deserialize<EventosNfe>(response.Dados);
+
+            if (eventosNfe == null) return new ResponseDefault<EventosNfe>(false, "Erro ao tentar deserealizar Eventos da NF-e", null);
+
+            return new ResponseDefault<EventosNfe>(true, "OK", eventosNfe);
         }
     }
 }

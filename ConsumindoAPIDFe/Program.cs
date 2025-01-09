@@ -45,7 +45,7 @@ namespace ConsumindoAPIDFe
             services.AddTransient<Login>();
             services.AddTransient<GerenciadorDeOpcoes>();
             services.AddTransient<MenuDetalhesNfe>();
-            services.AddTransient<DetalhesNfe>();
+            services.AddTransient<DadosNfe>();
             services.AddTransient<Totais>();
             services.AddTransient<Transporte>();
             services.AddTransient<Informacoes>();

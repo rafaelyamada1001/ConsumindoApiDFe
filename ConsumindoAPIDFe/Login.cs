@@ -18,21 +18,26 @@ namespace ConsumindoAPIDFe
 
         private async void btnEntrar_Click(object sender, EventArgs e)
         {
-            var email = txtUsuario.Text;
-            var senha = txtSenha.Text;
+            var email = txtUsuario.Text.Trim();
+            var senha = txtSenha.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(senha))
+            {
+                MessageBox.Show("Por favor, preencha os campos de email e senha.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
 
             try
             {
                 var usuario = await _postLoginUseCase.Execute(email, senha);
 
-                if (usuario != null)
+                if (usuario.Sucesso)
                 {
-                    // Resolve o próximo formulário do contêiner
                     var gerenciadorDeOpcoes = _serviceProvider.GetRequiredService<GerenciadorDeOpcoes>();
-                    gerenciadorDeOpcoes.Usuario = usuario; // Passa o usuário autenticado para o próximo formulário
+                    gerenciadorDeOpcoes.Usuario = usuario.Dados; 
                     gerenciadorDeOpcoes.Show();
 
-                    // Oculta o formulário de login
                     this.Hide();
                 }
                 else

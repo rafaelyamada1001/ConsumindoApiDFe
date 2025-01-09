@@ -81,7 +81,7 @@
             btnNfe.TabIndex = 4;
             btnNfe.Text = "NFe";
             btnNfe.UseVisualStyleBackColor = true;
-            btnNfe.Click += btnNfe_Click;
+            btnNfe.Click += btnNfe_ClickAsync;
             // 
             // btnTotais
             // 
@@ -91,7 +91,7 @@
             btnTotais.TabIndex = 5;
             btnTotais.Text = "Totais";
             btnTotais.UseVisualStyleBackColor = true;
-            btnTotais.Click += btnTotais_Click;
+            btnTotais.Click += btnTotais_ClickAsync;
             // 
             // btnTransporte
             // 
@@ -101,7 +101,7 @@
             btnTransporte.TabIndex = 6;
             btnTransporte.Text = "Transporte";
             btnTransporte.UseVisualStyleBackColor = true;
-            btnTransporte.Click += btnTransporte_Click;
+            btnTransporte.Click += btnTransporte_ClickAsync;
             // 
             // btnInformacoes
             // 
@@ -111,7 +111,7 @@
             btnInformacoes.TabIndex = 7;
             btnInformacoes.Text = "Informações";
             btnInformacoes.UseVisualStyleBackColor = true;
-            btnInformacoes.Click += btnInformacoes_Click;
+            btnInformacoes.Click += btnInformacoes_ClickAsync;
             // 
             // MenuDetalhesNfe
             // 

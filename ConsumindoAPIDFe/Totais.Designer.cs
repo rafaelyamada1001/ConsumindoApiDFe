@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             txtVlrProdutos = new TextBox();
-            textBox2 = new TextBox();
+            txtVlrSeguro = new TextBox();
             txtVlrBaseIcms = new TextBox();
             txtVlrIcms = new TextBox();
-            txtVlrIcmsBaseSt = new TextBox();
-            textBox6 = new TextBox();
+            txtVlrIcmsSt = new TextBox();
+            txtVlrBaseIcmsSt = new TextBox();
             txtVlrFrete = new TextBox();
-            textBox8 = new TextBox();
-            textBox9 = new TextBox();
-            textBox10 = new TextBox();
-            textBox11 = new TextBox();
-            textBox12 = new TextBox();
-            dataGridView1 = new DataGridView();
+            txtVlrIpi = new TextBox();
+            txtVlrIpiDevol = new TextBox();
+            txtOutrasDesp = new TextBox();
+            txtVlrDesconto = new TextBox();
+            txtTotalNfe = new TextBox();
+            dgvTotais = new DataGridView();
             lblVlrPordutos = new Label();
             lblVlrBaseIcms = new Label();
             lblVlrIcms = new Label();
@@ -53,7 +53,7 @@
             lblVlrOutrasDesp = new Label();
             lblVlrDesconto = new Label();
             lblVlrTotal = new Label();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvTotais).BeginInit();
             SuspendLayout();
             // 
             // txtVlrProdutos
@@ -64,13 +64,13 @@
             txtVlrProdutos.Size = new Size(100, 23);
             txtVlrProdutos.TabIndex = 0;
             // 
-            // textBox2
+            // txtVlrSeguro
             // 
-            textBox2.Location = new Point(12, 112);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 1;
+            txtVlrSeguro.Location = new Point(12, 112);
+            txtVlrSeguro.Name = "txtVlrSeguro";
+            txtVlrSeguro.ReadOnly = true;
+            txtVlrSeguro.Size = new Size(100, 23);
+            txtVlrSeguro.TabIndex = 1;
             // 
             // txtVlrBaseIcms
             // 
@@ -88,21 +88,21 @@
             txtVlrIcms.Size = new Size(100, 23);
             txtVlrIcms.TabIndex = 3;
             // 
-            // txtVlrIcmsBaseSt
+            // txtVlrIcmsSt
             // 
-            txtVlrIcmsBaseSt.Location = new Point(361, 50);
-            txtVlrIcmsBaseSt.Name = "txtVlrIcmsBaseSt";
-            txtVlrIcmsBaseSt.ReadOnly = true;
-            txtVlrIcmsBaseSt.Size = new Size(100, 23);
-            txtVlrIcmsBaseSt.TabIndex = 4;
+            txtVlrIcmsSt.Location = new Point(361, 50);
+            txtVlrIcmsSt.Name = "txtVlrIcmsSt";
+            txtVlrIcmsSt.ReadOnly = true;
+            txtVlrIcmsSt.Size = new Size(100, 23);
+            txtVlrIcmsSt.TabIndex = 4;
             // 
-            // textBox6
+            // txtVlrBaseIcmsSt
             // 
-            textBox6.Location = new Point(476, 50);
-            textBox6.Name = "textBox6";
-            textBox6.ReadOnly = true;
-            textBox6.Size = new Size(100, 23);
-            textBox6.TabIndex = 5;
+            txtVlrBaseIcmsSt.Location = new Point(476, 50);
+            txtVlrBaseIcmsSt.Name = "txtVlrBaseIcmsSt";
+            txtVlrBaseIcmsSt.ReadOnly = true;
+            txtVlrBaseIcmsSt.Size = new Size(100, 23);
+            txtVlrBaseIcmsSt.TabIndex = 5;
             // 
             // txtVlrFrete
             // 
@@ -112,53 +112,53 @@
             txtVlrFrete.Size = new Size(100, 23);
             txtVlrFrete.TabIndex = 6;
             // 
-            // textBox8
+            // txtVlrIpi
             // 
-            textBox8.Location = new Point(128, 112);
-            textBox8.Name = "textBox8";
-            textBox8.ReadOnly = true;
-            textBox8.Size = new Size(100, 23);
-            textBox8.TabIndex = 7;
+            txtVlrIpi.Location = new Point(128, 112);
+            txtVlrIpi.Name = "txtVlrIpi";
+            txtVlrIpi.ReadOnly = true;
+            txtVlrIpi.Size = new Size(100, 23);
+            txtVlrIpi.TabIndex = 7;
             // 
-            // textBox9
+            // txtVlrIpiDevol
             // 
-            textBox9.Location = new Point(244, 112);
-            textBox9.Name = "textBox9";
-            textBox9.ReadOnly = true;
-            textBox9.Size = new Size(100, 23);
-            textBox9.TabIndex = 8;
+            txtVlrIpiDevol.Location = new Point(244, 112);
+            txtVlrIpiDevol.Name = "txtVlrIpiDevol";
+            txtVlrIpiDevol.ReadOnly = true;
+            txtVlrIpiDevol.Size = new Size(100, 23);
+            txtVlrIpiDevol.TabIndex = 8;
             // 
-            // textBox10
+            // txtOutrasDesp
             // 
-            textBox10.Location = new Point(361, 112);
-            textBox10.Name = "textBox10";
-            textBox10.ReadOnly = true;
-            textBox10.Size = new Size(100, 23);
-            textBox10.TabIndex = 9;
+            txtOutrasDesp.Location = new Point(361, 112);
+            txtOutrasDesp.Name = "txtOutrasDesp";
+            txtOutrasDesp.ReadOnly = true;
+            txtOutrasDesp.Size = new Size(100, 23);
+            txtOutrasDesp.TabIndex = 9;
             // 
-            // textBox11
+            // txtVlrDesconto
             // 
-            textBox11.Location = new Point(476, 112);
-            textBox11.Name = "textBox11";
-            textBox11.ReadOnly = true;
-            textBox11.Size = new Size(100, 23);
-            textBox11.TabIndex = 10;
+            txtVlrDesconto.Location = new Point(476, 112);
+            txtVlrDesconto.Name = "txtVlrDesconto";
+            txtVlrDesconto.ReadOnly = true;
+            txtVlrDesconto.Size = new Size(100, 23);
+            txtVlrDesconto.TabIndex = 10;
             // 
-            // textBox12
+            // txtTotalNfe
             // 
-            textBox12.Location = new Point(594, 112);
-            textBox12.Name = "textBox12";
-            textBox12.ReadOnly = true;
-            textBox12.Size = new Size(100, 23);
-            textBox12.TabIndex = 11;
+            txtTotalNfe.Location = new Point(594, 112);
+            txtTotalNfe.Name = "txtTotalNfe";
+            txtTotalNfe.ReadOnly = true;
+            txtTotalNfe.Size = new Size(100, 23);
+            txtTotalNfe.TabIndex = 11;
             // 
-            // dataGridView1
+            // dgvTotais
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 154);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(682, 175);
-            dataGridView1.TabIndex = 12;
+            dgvTotais.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTotais.Location = new Point(12, 154);
+            dgvTotais.Name = "dgvTotais";
+            dgvTotais.Size = new Size(682, 175);
+            dgvTotais.TabIndex = 12;
             // 
             // lblVlrPordutos
             // 
@@ -285,23 +285,23 @@
             Controls.Add(lblVlrIcms);
             Controls.Add(lblVlrBaseIcms);
             Controls.Add(lblVlrPordutos);
-            Controls.Add(dataGridView1);
-            Controls.Add(textBox12);
-            Controls.Add(textBox11);
-            Controls.Add(textBox10);
-            Controls.Add(textBox9);
-            Controls.Add(textBox8);
+            Controls.Add(dgvTotais);
+            Controls.Add(txtTotalNfe);
+            Controls.Add(txtVlrDesconto);
+            Controls.Add(txtOutrasDesp);
+            Controls.Add(txtVlrIpiDevol);
+            Controls.Add(txtVlrIpi);
             Controls.Add(txtVlrFrete);
-            Controls.Add(textBox6);
-            Controls.Add(txtVlrIcmsBaseSt);
+            Controls.Add(txtVlrBaseIcmsSt);
+            Controls.Add(txtVlrIcmsSt);
             Controls.Add(txtVlrIcms);
             Controls.Add(txtVlrBaseIcms);
-            Controls.Add(textBox2);
+            Controls.Add(txtVlrSeguro);
             Controls.Add(txtVlrProdutos);
             Name = "Totais";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Totais";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvTotais).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -309,18 +309,18 @@
         #endregion
 
         private TextBox txtVlrProdutos;
-        private TextBox textBox2;
+        private TextBox txtVlrSeguro;
         private TextBox txtVlrBaseIcms;
         private TextBox txtVlrIcms;
-        private TextBox txtVlrIcmsBaseSt;
-        private TextBox textBox6;
+        private TextBox txtVlrIcmsSt;
+        private TextBox txtVlrBaseIcmsSt;
         private TextBox txtVlrFrete;
-        private TextBox textBox8;
-        private TextBox textBox9;
-        private TextBox textBox10;
-        private TextBox textBox11;
-        private TextBox textBox12;
-        private DataGridView dataGridView1;
+        private TextBox txtVlrIpi;
+        private TextBox txtVlrIpiDevol;
+        private TextBox txtOutrasDesp;
+        private TextBox txtVlrDesconto;
+        private TextBox txtTotalNfe;
+        private DataGridView dgvTotais;
         private Label lblVlrPordutos;
         private Label lblVlrBaseIcms;
         private Label lblVlrIcms;

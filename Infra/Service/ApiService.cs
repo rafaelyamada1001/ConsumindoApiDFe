@@ -1,4 +1,5 @@
-﻿using Aplication.Interfaces;
+﻿using Aplication.DTO;
+using Aplication.Interfaces;
 using Domain.Models;
 using System.Text;
 
@@ -14,10 +15,10 @@ namespace Infra.Service
             _httpClient = httpClient;
         }
 
-        public async Task<string> GetDataAsync(string endpoint, Usuario usuario, Parametros parametros)
+        public async Task<ResponseDefault<string>> GetDataAsync(string endpoint, Usuario usuario, Parametros parametros)
         {
             var uriBuilder = new UriBuilder(endpoint);
-            
+
             var query = new List<string>();
 
             if (!string.IsNullOrEmpty(parametros.Empresa))
@@ -57,31 +58,39 @@ namespace Infra.Service
 
             var request = new HttpRequestMessage(HttpMethod.Get, uriBuilder.Uri);
 
-            // Adiciona os headers necessários
             request.Headers.Add("email", usuario.Email);
             request.Headers.Add("senha", usuario.Token);
 
             try
             {
-                // Envia a requisição e valida o resultado
                 var response = await _httpClient.SendAsync(request);
                 response.EnsureSuccessStatusCode();
+                var data = await response.Content.ReadAsStringAsync();
 
-                // Retorna o conteúdo da resposta
-                return await response.Content.ReadAsStringAsync();
+
+                return new ResponseDefault<string>(true,"OK", data);
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Erro ao acessar a API: {ex.Message}", ex);
+                return new ResponseDefault<string>(false, $"Erro:{ex.Message}", null);
             }
         }
-        public async Task<string> PostDataAsync(string endpoint, string jsonContent)
+        public async Task<ResponseDefault<string>> PostDataAsync(string endpoint, string jsonContent)
         {
-            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync(endpoint, content);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var response = await _httpClient.PostAsync(endpoint, content);
+                response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsStringAsync();
+                var data = await response.Content.ReadAsStringAsync();
+
+                return new ResponseDefault<string>(true,"OK", data);
+            }
+            catch (Exception ex)
+            {
+                return new ResponseDefault<string>(false, $"Erro{ex.Message}", null);
+            }
         }
 
     }
