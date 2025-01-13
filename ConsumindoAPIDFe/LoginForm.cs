@@ -3,12 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsumindoAPIDFe
 {
-    public partial class Login : Form
+    public partial class LoginForm : Form
     {
         private readonly PostLoginUseCase _postLoginUseCase;
         private readonly IServiceProvider _serviceProvider;
 
-        public Login(PostLoginUseCase postLoginUseCase, IServiceProvider serviceProvider)
+        public LoginForm(PostLoginUseCase postLoginUseCase, IServiceProvider serviceProvider)
         {
             _postLoginUseCase = postLoginUseCase;
             _serviceProvider = serviceProvider;
@@ -34,7 +34,7 @@ namespace ConsumindoAPIDFe
 
                 if (usuario.Sucesso)
                 {
-                    var gerenciadorDeOpcoes = _serviceProvider.GetRequiredService<GerenciadorDeOpcoes>();
+                    var gerenciadorDeOpcoes = _serviceProvider.GetRequiredService<GerenciadorDeOpcoesForm>();
                     gerenciadorDeOpcoes.Usuario = usuario.Dados; 
                     gerenciadorDeOpcoes.Show();
 

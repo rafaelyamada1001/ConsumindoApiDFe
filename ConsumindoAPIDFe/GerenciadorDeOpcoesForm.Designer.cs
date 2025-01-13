@@ -1,6 +1,6 @@
 ﻿namespace ConsumindoAPIDFe
 {
-    partial class GerenciadorDeOpcoes
+    partial class GerenciadorDeOpcoesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -50,7 +50,6 @@
             lblChaveNfe = new Label();
             lblEmpresa = new Label();
             cmbEmpresa = new ComboBox();
-            btnEventosNFe = new Button();
             btnPdfNFe = new Button();
             btnDetalhesNFe = new Button();
             btnListarNFe = new Button();
@@ -62,6 +61,7 @@
             lblVlrTotal = new Label();
             lblNotasCanceladas = new Label();
             lblVlrCancelado = new Label();
+            btnEventosNFe = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvNfe).BeginInit();
             grpOpcoes.SuspendLayout();
             SuspendLayout();
@@ -278,17 +278,6 @@
             cmbEmpresa.TabIndex = 4;
             cmbEmpresa.SelectedIndexChanged += cmbEmpresa_SelectedIndexChanged;
             // 
-            // btnEventosNFe
-            // 
-            btnEventosNFe.BackColor = SystemColors.ControlLightLight;
-            btnEventosNFe.Location = new Point(6, 118);
-            btnEventosNFe.Name = "btnEventosNFe";
-            btnEventosNFe.Size = new Size(128, 33);
-            btnEventosNFe.TabIndex = 3;
-            btnEventosNFe.Text = "Eventos NF-e";
-            btnEventosNFe.UseVisualStyleBackColor = false;
-            btnEventosNFe.Click += btnEventosNFe_Click;
-            // 
             // btnPdfNFe
             // 
             btnPdfNFe.BackColor = SystemColors.ControlLightLight;
@@ -399,6 +388,17 @@
             lblVlrCancelado.TabIndex = 9;
             lblVlrCancelado.Text = "Valor Cancelado :";
             // 
+            // btnEventosNFe
+            // 
+            btnEventosNFe.BackColor = SystemColors.ControlLightLight;
+            btnEventosNFe.Location = new Point(6, 118);
+            btnEventosNFe.Name = "btnEventosNFe";
+            btnEventosNFe.Size = new Size(128, 33);
+            btnEventosNFe.TabIndex = 3;
+            btnEventosNFe.Text = "Eventos NF-e";
+            btnEventosNFe.UseVisualStyleBackColor = false;
+            btnEventosNFe.Click += btnEventosNFe_Click;
+            // 
             // GerenciadorDeOpcoes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -430,7 +430,6 @@
         private DataGridView dgvNfe;
         private GroupBox grpOpcoes;
         private Button btnListarNFe;
-        private Button btnEventosNFe;
         private Button btnPdfNFe;
         private Button btnDetalhesNFe;
         private Label lblEmpresa;
@@ -461,5 +460,6 @@
         private Label lblVlrTotal;
         private Label lblNotasCanceladas;
         private Label lblVlrCancelado;
+        private Button btnEventosNFe;
     }
 }

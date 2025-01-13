@@ -2,11 +2,11 @@
 
 namespace ConsumindoAPIDFe
 {
-    public partial class Totais : Form
+    public partial class TotaisForm : Form
     {
         public DetalhesNfe Detalhes {  get; set; }
 
-        public Totais()
+        public TotaisForm()
         {
             InitializeComponent();
         }

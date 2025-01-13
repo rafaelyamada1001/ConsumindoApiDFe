@@ -1,6 +1,6 @@
 ﻿namespace ConsumindoAPIDFe
 {
-    partial class Totais
+    partial class TotaisForm
     {
         /// <summary>
         /// Required designer variable.

@@ -4,22 +4,25 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsumindoAPIDFe
 {
-    public partial class GerenciadorDeOpcoes : Form
+    public partial class GerenciadorDeOpcoesForm : Form
     {
         private readonly GetListaNfeUseCase _getListaNfeUseCase;
         private readonly GetEventosNfeUseCase _getEventosNfeUseCase;
-        private readonly GetNfeByChaveUseCase _getNfeByChaveUseCase;
+        private readonly GetDanfeNfeUseCase _getDanfeNfeUseCase;
         private readonly IServiceProvider _serviceProvider;
 
-        public Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; }       
 
 
-        public GerenciadorDeOpcoes(GetListaNfeUseCase getListaNfeUseCase, GetEventosNfeUseCase getEventosNfeUseCase, GetNfeByChaveUseCase getNfeByChaveUseCase, IServiceProvider serviceProvider)
+        public GerenciadorDeOpcoesForm(GetListaNfeUseCase getListaNfeUseCase, GetEventosNfeUseCase getEventosNfeUseCase, GetDanfeNfeUseCase getDanfeNfeUseCase, IServiceProvider serviceProvider)
         {
             _getListaNfeUseCase = getListaNfeUseCase;
             _getEventosNfeUseCase = getEventosNfeUseCase;
-            _getNfeByChaveUseCase = getNfeByChaveUseCase;
+            _getDanfeNfeUseCase = getDanfeNfeUseCase;
             _serviceProvider = serviceProvider;
+
+            
+
             InitializeComponent();
 
             Load += new EventHandler(GerenciadorDeOpcoes_Load);
@@ -48,7 +51,7 @@ namespace ConsumindoAPIDFe
         {
             try
             {
-                var menuDetalhesNfe = _serviceProvider.GetRequiredService<MenuDetalhesNfe>();
+                var menuDetalhesNfe = _serviceProvider.GetRequiredService<MenuDetalhesNfeForm>();
                 menuDetalhesNfe.Usuario = Usuario;
                 menuDetalhesNfe.Show();
 
@@ -122,9 +125,13 @@ namespace ConsumindoAPIDFe
                 var eventosNfe = await _getEventosNfeUseCase.Execute(Usuario, parametros);
                 if (eventosNfe != null)
                 {
+                    var formsEventosNfe = _serviceProvider.GetRequiredService<EventosNfeForm>();
+                    formsEventosNfe.Eventos = eventosNfe.Dados;
+                    formsEventosNfe.MostrarDetalhes();
+                    formsEventosNfe.Show();
 
-                    dgvNfe.DataSource = null;
-                    dgvNfe.DataSource = eventosNfe.Dados.ListaEvento;
+
+                    
                 }
                 else
                 {
@@ -154,23 +161,19 @@ namespace ConsumindoAPIDFe
                     Chave = txtChaveNfe.Text
                 };
 
-                var pdfNfe = await _getNfeByChaveUseCase.Execute(Usuario, parametros);
+                var caminhoDanfe = $@"C:\PdfTeste\DANFE_{txtChaveNfe.Text}.pdf";
 
-                if (pdfNfe != null)
+                var response = await _getDanfeNfeUseCase.Execute(Usuario, parametros, caminhoDanfe);
+
+                if (response.Sucesso)
                 {
-                    
-                    var caminhoArquivo = @"C:\PdfTeste" + txtChaveNfe.Text + ".pdf";
-
-                    
-                    //await File.WriteAllBytesAsync(caminhoArquivo, pdfNfe.Dados.msg);
-
-                    
-                    MessageBox.Show($"PDF da NF-e obtido com sucesso! Salvo em: {caminhoArquivo}", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"PDF da NF-e obtido com sucesso! Salvo em: {response.Dados}", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Não foi possível obter o PDF da NF-e.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Erro: {response.Mensagem}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
             catch (Exception ex)
             {

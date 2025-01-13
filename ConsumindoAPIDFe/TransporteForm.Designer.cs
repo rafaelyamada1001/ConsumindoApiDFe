@@ -1,6 +1,6 @@
 ﻿namespace ConsumindoAPIDFe
 {
-    partial class Transporte
+    partial class TransporteForm
     {
         /// <summary>
         /// Required designer variable.

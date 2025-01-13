@@ -3,11 +3,11 @@ using Domain.Models;
 
 namespace ConsumindoAPIDFe
 {
-    public partial class DadosNfe : Form
+    public partial class DetalhesNfeForm : Form
     {
         public DetalhesNfe Detalhes { get; set; }
 
-        public DadosNfe()
+        public DetalhesNfeForm()
         {
 
             InitializeComponent();
@@ -33,6 +33,11 @@ namespace ConsumindoAPIDFe
         private void txtChaveNfe_TextChanged(object sender, EventArgs e)
         {
             txtChaveNfe.Text = Detalhes.doc.chNFe.ToString();
+        }
+
+        private void DetalhesNfeForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

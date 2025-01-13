@@ -1,6 +1,6 @@
 ﻿namespace ConsumindoAPIDFe
 {
-    partial class MenuDetalhesNfe
+    partial class MenuDetalhesNfeForm
     {
         /// <summary>
         /// Required designer variable.

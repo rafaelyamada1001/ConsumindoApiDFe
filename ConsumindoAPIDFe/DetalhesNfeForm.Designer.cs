@@ -1,6 +1,6 @@
 ﻿namespace ConsumindoAPIDFe
 {
-    partial class DadosNfe
+    partial class DetalhesNfeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -278,7 +278,7 @@
             lblNatureza.TabIndex = 25;
             lblNatureza.Text = "Natureza :";
             // 
-            // DetalhesNfe
+            // DetalhesNfeForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -309,9 +309,10 @@
             Controls.Add(txtModelo);
             Controls.Add(txtNumeroNfe);
             Controls.Add(txtChaveNfe);
-            Name = "DetalhesNfe";
+            Name = "DetalhesNfeForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DetalhesNfe";
+            Load += DetalhesNfeForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

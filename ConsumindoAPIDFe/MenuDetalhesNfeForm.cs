@@ -4,16 +4,19 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsumindoAPIDFe
 {
-    public partial class MenuDetalhesNfe : Form
+    public partial class MenuDetalhesNfeForm : Form
     {
         private readonly GetNfeUseCase _getNfeUseCase;
+        private readonly GetEventosNfeUseCase _getEventosNfeUseCase;
         private readonly IServiceProvider _serviceProvider;
 
         public Usuario Usuario { get; set; }
-        public MenuDetalhesNfe(GetNfeUseCase getNfeUseCase, IServiceProvider serviceProvider)
+        public MenuDetalhesNfeForm(GetNfeUseCase getNfeUseCase, IServiceProvider serviceProvider, GetEventosNfeUseCase getEventosNfeUseCase)
         {
             _getNfeUseCase = getNfeUseCase;
             _serviceProvider = serviceProvider;
+            _getEventosNfeUseCase = getEventosNfeUseCase;
+
             InitializeComponent();
         }
 
@@ -40,7 +43,6 @@ namespace ConsumindoAPIDFe
             {
                 MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
 
         private async void btnNfe_ClickAsync(object sender, EventArgs e)
@@ -56,19 +58,19 @@ namespace ConsumindoAPIDFe
                 Chave = txtChaveNfe.Text,
             };
 
-                var resultado = await _getNfeUseCase.Execute(Usuario, parametros);
-                if (resultado != null)
-                {
-                    var detalhesNfe = _serviceProvider.GetRequiredService<DadosNfe>();
-                    detalhesNfe.Detalhes = resultado.Dados;
-                    detalhesNfe.MostrarDetalhes();
-                    detalhesNfe.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            
+            var resultado = await _getNfeUseCase.Execute(Usuario, parametros);
+            if (resultado != null)
+            {
+                var detalhesNfe = _serviceProvider.GetRequiredService<DetalhesNfeForm>();
+                detalhesNfe.Detalhes = resultado.Dados;
+                detalhesNfe.MostrarDetalhes();
+                detalhesNfe.Show();
+            }
+            else
+            {
+                MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
 
         }
 
@@ -88,7 +90,7 @@ namespace ConsumindoAPIDFe
             var resultado = await _getNfeUseCase.Execute(Usuario, parametros);
             if (resultado != null)
             {
-                var totais = _serviceProvider.GetRequiredService<Totais>();
+                var totais = _serviceProvider.GetRequiredService<TotaisForm>();
                 totais.Detalhes = resultado.Dados;
                 totais.MostrarTotais();
                 totais.Show();
@@ -116,7 +118,7 @@ namespace ConsumindoAPIDFe
             var resultado = await _getNfeUseCase.Execute(Usuario, parametros);
             if (resultado != null)
             {
-                var transporte = _serviceProvider.GetRequiredService<Transporte>();
+                var transporte = _serviceProvider.GetRequiredService<TransporteForm>();
                 transporte.Detalhes = resultado.Dados;
                 transporte.MostrarTransporte();
                 transporte.Show();
@@ -154,6 +156,11 @@ namespace ConsumindoAPIDFe
             {
                 MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private async void btnEventosNfe_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

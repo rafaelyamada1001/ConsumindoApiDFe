@@ -2,10 +2,10 @@
 
 namespace ConsumindoAPIDFe
 {
-    public partial class Transporte : Form
+    public partial class TransporteForm : Form
     {
         public DetalhesNfe Detalhes {  get; set; }
-        public Transporte()
+        public TransporteForm()
         {
             InitializeComponent();
         }

@@ -23,7 +23,7 @@ namespace ConsumindoAPIDFe
             using (var serviceProvider = services.BuildServiceProvider())
             {
                 // Resolve o formulário principal
-                var loginForm = serviceProvider.GetRequiredService<Login>();
+                var loginForm = serviceProvider.GetRequiredService<LoginForm>();
 
                 Application.Run(loginForm);
             }
@@ -39,16 +39,17 @@ namespace ConsumindoAPIDFe
             services.AddTransient<GetListaNfeUseCase>();
             services.AddTransient<GetEventosNfeUseCase>();
             services.AddTransient<GetNfeUseCase>();
-            services.AddTransient<GetNfeByChaveUseCase>();
+            services.AddTransient<GetDanfeNfeUseCase>();
 
             // Registro dos formulários
-            services.AddTransient<Login>();
-            services.AddTransient<GerenciadorDeOpcoes>();
-            services.AddTransient<MenuDetalhesNfe>();
-            services.AddTransient<DadosNfe>();
-            services.AddTransient<Totais>();
-            services.AddTransient<Transporte>();
+            services.AddTransient<LoginForm>();
+            services.AddTransient<GerenciadorDeOpcoesForm>();
+            services.AddTransient<MenuDetalhesNfeForm>();
+            services.AddTransient<DetalhesNfeForm>();
+            services.AddTransient<TotaisForm>();
+            services.AddTransient<TransporteForm>();
             services.AddTransient<Informacoes>();
+            services.AddTransient<EventosNfeForm>();
         }
     }
 }
