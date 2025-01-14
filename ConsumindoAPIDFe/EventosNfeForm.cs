@@ -1,5 +1,4 @@
 ﻿using Domain.Models;
-using System.Security.Cryptography.X509Certificates;
 namespace ConsumindoAPIDFe
 {
     public partial class EventosNfeForm : Form
@@ -12,7 +11,7 @@ namespace ConsumindoAPIDFe
 
         private void dvgEventosNfe_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+           
         }
 
         public void MostrarDetalhes()

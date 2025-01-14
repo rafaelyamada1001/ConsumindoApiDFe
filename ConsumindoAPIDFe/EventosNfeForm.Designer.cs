@@ -37,6 +37,7 @@
             dgvEventosNfe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvEventosNfe.Location = new Point(12, 12);
             dgvEventosNfe.Name = "dgvEventosNfe";
+            dgvEventosNfe.ReadOnly = true;
             dgvEventosNfe.Size = new Size(776, 426);
             dgvEventosNfe.TabIndex = 0;
             dgvEventosNfe.CellContentClick += dvgEventosNfe_CellContentClick;
@@ -48,6 +49,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(dgvEventosNfe);
             Name = "EventosNfeForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "EventosNfeForm";
             ((System.ComponentModel.ISupportInitialize)dgvEventosNfe).EndInit();
             ResumeLayout(false);

@@ -9,7 +9,6 @@ namespace ConsumindoAPIDFe
 
         public DetalhesNfeForm()
         {
-
             InitializeComponent();
         }
 

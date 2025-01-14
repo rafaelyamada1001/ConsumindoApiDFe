@@ -11,8 +11,7 @@ namespace ConsumindoAPIDFe
         private readonly GetDanfeNfeUseCase _getDanfeNfeUseCase;
         private readonly IServiceProvider _serviceProvider;
 
-        public Usuario Usuario { get; set; }       
-
+        public Usuario Usuario { get; set; }
 
         public GerenciadorDeOpcoesForm(GetListaNfeUseCase getListaNfeUseCase, GetEventosNfeUseCase getEventosNfeUseCase, GetDanfeNfeUseCase getDanfeNfeUseCase, IServiceProvider serviceProvider)
         {
@@ -20,8 +19,6 @@ namespace ConsumindoAPIDFe
             _getEventosNfeUseCase = getEventosNfeUseCase;
             _getDanfeNfeUseCase = getDanfeNfeUseCase;
             _serviceProvider = serviceProvider;
-
-            
 
             InitializeComponent();
 
@@ -53,8 +50,8 @@ namespace ConsumindoAPIDFe
             {
                 var menuDetalhesNfe = _serviceProvider.GetRequiredService<MenuDetalhesNfeForm>();
                 menuDetalhesNfe.Usuario = Usuario;
+                menuDetalhesNfe.ChaveNfe = txtChaveNfe.Text.Trim();
                 menuDetalhesNfe.Show();
-
             }
             catch (Exception ex)
             {
@@ -75,7 +72,7 @@ namespace ConsumindoAPIDFe
                 Modelo = txtModelo.Text.Trim(),
                 Numero = txtNumero.Text.Trim(),
                 CnpjCpf = txtCnpjCpf.Text.Trim(),
-                RazaoSocial = txtRazaoSocial.Text.Trim()
+                RazaoSocial = txtRazaoSocial.Text.Trim()               
             };
 
             try
@@ -83,12 +80,24 @@ namespace ConsumindoAPIDFe
                 var detalhes = await _getListaNfeUseCase.Execute(Usuario, parametros);
 
                 if (detalhes != null)
-                {
+                {                 
                     dgvNfe.DataSource = detalhes.Dados.listaNFe;
                     txtTotalNotas.Text = detalhes.Dados.resumo.qtRegistros.ToString();
                     txtVlrTotal.Text = detalhes.Dados.resumo.vlrTotal.ToString();
                     txtNotasCanceladas.Text = detalhes.Dados.resumo.qtRegistrosCanceladas.ToString();
                     txtVlrCancelado.Text = detalhes.Dados.resumo.vlrCanceladas.ToString();
+
+                    dgvNfe.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+                    dgvNfe.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+                    for (int i = 0; i < dgvNfe.Columns.Count; i++)
+                    {
+                        dgvNfe.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    }
+
+                    dgvNfe.Columns["Valor"].DefaultCellStyle.Format = "#,##0.00";
+                    dgvNfe.Columns["Valor"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvNfe.Columns["Modelo"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvNfe.Columns["Numero"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
                 else
                 {
@@ -129,9 +138,6 @@ namespace ConsumindoAPIDFe
                     formsEventosNfe.Eventos = eventosNfe.Dados;
                     formsEventosNfe.MostrarDetalhes();
                     formsEventosNfe.Show();
-
-
-                    
                 }
                 else
                 {
@@ -147,6 +153,7 @@ namespace ConsumindoAPIDFe
 
         private async void btnPdfNFe_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 if (string.IsNullOrWhiteSpace(txtChaveNfe.Text))
@@ -184,28 +191,22 @@ namespace ConsumindoAPIDFe
 
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbTipo.Items.Clear();
-            cmbTipo.Items.Add(new KeyValuePair<string, string>("Todas", "T"));
-            cmbTipo.Items.Add(new KeyValuePair<string, string>("Entradas", "E"));
-            cmbTipo.Items.Add(new KeyValuePair<string, string>("Saídas", "S"));
-            cmbTipo.DisplayMember = "Key";
-            cmbTipo.ValueMember = "Value";
 
         }
 
         private void cmbEmissao_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbEmissao.Items.Clear();
-            cmbEmissao.Items.Add(new KeyValuePair<string, string>("Própria", "P"));
-            cmbEmissao.Items.Add(new KeyValuePair<string, string>("Terceiro", "T"));
-            cmbEmissao.DisplayMember = "Key";
-            cmbEmissao.ValueMember = "Value";
 
         }
 
         private void dgvNfe_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {            
+            if (e.ColumnIndex == 1)
+            {
+                var chave = dgvNfe.FirstDisplayedCell = dgvNfe.CurrentCell;
 
+                if (chave.Value != null) txtChaveNfe.Text = chave.Value.ToString();
+            }        
         }
         private void GerenciadorDeOpcoes_FormClosing(object sender, FormClosingEventArgs e)
         {

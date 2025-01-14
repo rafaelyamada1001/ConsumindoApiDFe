@@ -1,7 +1,6 @@
 ﻿using Aplication.DTO;
 using Aplication.Interfaces;
 using Domain.Models;
-using Microsoft.VisualBasic;
 using System.Text.Json;
 
 namespace Aplication.UseCase
@@ -19,13 +18,10 @@ namespace Aplication.UseCase
         {
             var endpoint = "https://backend.4lions.tec.br/dfe/v1/public/GetDANFE";
 
-            // Chama o serviço para obter os dados em Base64
             var response = await _apiService.GetDataAsync(endpoint, usuario, parametros);
 
-            if (!response.Sucesso)
-            {
-                return new ResponseDefault<DanfeNfe>(false, $"Erro ao obter DANFE: {response.Mensagem}", null);
-            }
+            if (!response.Sucesso)return new ResponseDefault<DanfeNfe>(false, $"Erro ao obter DANFE: {response.Mensagem}", null);
+            
 
             try
             {

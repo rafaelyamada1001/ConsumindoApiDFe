@@ -6,20 +6,26 @@ namespace ConsumindoAPIDFe
 {
     public partial class MenuDetalhesNfeForm : Form
     {
-        private readonly GetNfeUseCase _getNfeUseCase;
-        private readonly GetEventosNfeUseCase _getEventosNfeUseCase;
+        private readonly GetNfeUseCase _getNfeUseCase;       
         private readonly IServiceProvider _serviceProvider;
 
         public Usuario Usuario { get; set; }
+        public string ChaveNfe { get; set; }
         public MenuDetalhesNfeForm(GetNfeUseCase getNfeUseCase, IServiceProvider serviceProvider, GetEventosNfeUseCase getEventosNfeUseCase)
         {
             _getNfeUseCase = getNfeUseCase;
             _serviceProvider = serviceProvider;
-            _getEventosNfeUseCase = getEventosNfeUseCase;
 
             InitializeComponent();
+            Load += MenuDetalhesNfeForm_Load;
         }
-
+        private void MenuDetalhesNfeForm_Load(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(ChaveNfe))
+            {
+                txtChaveNfe.Text = ChaveNfe;
+            }
+        }
         private async void btnProdutos_Click(object sender, EventArgs e)
         {
 
@@ -38,6 +44,13 @@ namespace ConsumindoAPIDFe
             {
                 dgvNfe.DataSource = null;
                 dgvNfe.DataSource = resultado.Dados.doc.item;
+
+                dgvNfe.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+                dgvNfe.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+                for (int i = 0; i < dgvNfe.Columns.Count; i++)
+                {
+                    dgvNfe.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
             }
             else
             {
@@ -70,8 +83,6 @@ namespace ConsumindoAPIDFe
             {
                 MessageBox.Show("Nenhum detalhe encontrado para os parâmetros fornecidos.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-
         }
 
         private async void btnTotais_ClickAsync(object sender, EventArgs e)
